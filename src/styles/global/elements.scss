@@ -1,0 +1,8 @@
+a {
+  color: var(--color-accent-secondary);
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

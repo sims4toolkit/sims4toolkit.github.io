@@ -1,0 +1,66 @@
+<script lang="ts">
+  import GradientBanner from "../../shared/GradientBanner.svelte";
+
+  export let title: string;
+  export let npmLink: string;
+  export let npmInstallText: string;
+
+  let npmInstallTextElement: HTMLElement;
+
+  function copyNpmInstallText() {
+    if (!navigator.clipboard) {
+      const range = document.createRange();
+      range.selectNode(npmInstallTextElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+    } else {
+      navigator.clipboard.writeText(npmInstallText);
+    }
+  }
+</script>
+
+<GradientBanner>
+  <div id="docs-banner" class="flex-center flex-col">
+    <h2 class="text-center text-shadow m-0">
+      {title}
+    </h2>
+    <p class="text-center">
+      Available on <a href={npmLink} target="_blank">npm</a>.
+    </p>
+    <div class="npm-install-container flex-center">
+      <code bind:this={npmInstallTextElement}>{npmInstallText}</code>
+      <img
+        src="./assets/copy.svg"
+        alt="copy"
+        class="is-svg light-svg hoverable"
+        on:click={copyNpmInstallText}
+      />
+    </div>
+  </div>
+</GradientBanner>
+
+<style lang="scss">
+  #docs-banner {
+    a {
+      color: var(--color-light);
+    }
+
+    .npm-install-container {
+      background-color: var(--color-shadow);
+      box-shadow: 0 2px 4px var(--color-shadow);
+      padding: 0.5em 1em;
+      border-radius: 0.35em;
+      margin-top: 1.5em;
+
+      code {
+        font-size: 1.4em;
+      }
+
+      img {
+        margin-left: 1em;
+      }
+    }
+  }
+</style>
