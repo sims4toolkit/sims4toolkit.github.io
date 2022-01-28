@@ -4,10 +4,15 @@
   export let iconSrc: string;
   export let title: string;
   export let description: string;
+  export let useSvgFilter: boolean = true;
 </script>
 
 <div class="feature floating-card drop-shadow">
-  <img src="../assets/{iconSrc}.svg" alt={iconSrc} class="is-svg" />
+  <img
+    src="../assets/{iconSrc}.svg"
+    alt={iconSrc}
+    class:is-svg={useSvgFilter}
+  />
   <span class="text-wrapper">
     <SectionHeader {title} nowrap={true} />
     <p>{description}</p>

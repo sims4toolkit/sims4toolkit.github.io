@@ -4,14 +4,14 @@
 
 <div class="three-features">
   <Feature
-    iconSrc="sunny-outline"
-    title="Type Support"
-    description="Lorem ipsum doler sit amut whatever blah blah."
+    iconSrc="typescript-logo"
+    title="Made with TypeScript"
+    description="Coming with full type support makes S4TK easy to use and robust."
   />
   <Feature
     iconSrc="code-slash-outline"
     title="Open Source"
-    description="Lorem ipsum doler sit amut whatever blah blah."
+    description="Feel free to view the source code, open issues, make pull requests, or fork the project on GitHub."
   />
   <Feature
     iconSrc="cog-outline"
