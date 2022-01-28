@@ -12,6 +12,7 @@
   </div>
   <div class="right flex-center-v flex-space-between">
     <a href="/docs" use:link class:active={$location === "/docs"}>Docs</a>
+    <a href="/help" use:link class:active={$location === "/help"}>Help</a>
     <a href="https://github.com/sims4toolkit" target="_blank">GitHub</a>
     <a href="https://npmjs.com/org/s4tk" target="_blank">npm</a>
     <ThemeToggler />

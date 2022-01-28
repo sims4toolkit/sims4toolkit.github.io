@@ -9,6 +9,7 @@
   import DocsPage from "./components/pages/docs/DocsPage.svelte";
   import BlurOverlay from "./components/shared/BlurOverlay.svelte";
   import { onMount } from "svelte";
+  import HelpPage from "./components/pages/help/HelpPage.svelte";
 
   let showOverlay = false;
 
@@ -25,6 +26,7 @@
   // https://github.com/ItalyPaleAle/svelte-spa-router
   const routes = {
     "/": HomePage,
+    "/help": HelpPage,
     "/docs": DocsLandingPage,
     "/docs/:package": DocsPage,
     "/desktop": DesktopPage,
