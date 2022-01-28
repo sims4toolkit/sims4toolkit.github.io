@@ -32,6 +32,10 @@
     "/desktop": DesktopPage,
     "*": NotFoundPage,
   };
+
+  window.addEventListener("hashchange", function () {
+    window.scrollTo(0, 0);
+  });
 </script>
 
 <Navbar />
