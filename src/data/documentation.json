@@ -9,7 +9,7 @@
     "repo": "https://github.com/sims4toolkit/hashing",
     "npmLink": "https://npmjs.com/package/@s4tk/hashing",
     "npmPackageName": "@s4tk/hashing",
-    "description": "Utility functions for hashing."
+    "description": "Utility functions for FNV hashing."
   },
   "models": {
     "repo": "https://github.com/sims4toolkit/models",

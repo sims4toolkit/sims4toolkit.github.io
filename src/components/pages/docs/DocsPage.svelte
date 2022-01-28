@@ -29,6 +29,7 @@
     title={packageData.description}
     npmLink={packageData.npmLink}
     npmInstallText="npm i {packageData.npmPackageName}"
+    githubLink={packageData.repo}
   />
 </section>
 

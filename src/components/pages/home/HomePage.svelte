@@ -4,18 +4,18 @@
   import HollowButton from "../../shared/HollowButton.svelte";
   import SectionHeader from "../../shared/SectionHeader.svelte";
   import HomeBanner from "./HomeBanner.svelte";
-  import HomeSection from "./HomeSection.svelte";
+  import ContentArea from "../../shared/ContentArea.svelte";
 </script>
 
 <section id="home">
   <HomeBanner />
-  <HomeSection>
+  <ContentArea>
     <slot>
       <SectionHeader title="Easy to Use" />
       <p>It just takes one line of code to load a package file.</p>
     </slot>
-  </HomeSection>
-  <HomeSection banded={true}>
+  </ContentArea>
+  <ContentArea banded={true}>
     <slot>
       <SectionHeader title="Open Source" />
       <p>
@@ -23,8 +23,8 @@
         TypeScript and JavaScript to make development as safe as can be.
       </p>
     </slot>
-  </HomeSection>
-  <HomeSection>
+  </ContentArea>
+  <ContentArea>
     <slot>
       <SectionHeader title="More to Come" />
       <p>
@@ -40,8 +40,8 @@
         the comfort of an IDE.
       </p>
     </slot>
-  </HomeSection>
-  <HomeSection banded={true}>
+  </ContentArea>
+  <ContentArea banded={true}>
     <slot>
       <FloatingCard title="Created by Frankk">
         <div class="simself-portrait-container flex-center" slot="left">
@@ -87,7 +87,7 @@
         </div>
       </FloatingCard>
     </slot>
-  </HomeSection>
+  </ContentArea>
 </section>
 
 <style lang="scss">
