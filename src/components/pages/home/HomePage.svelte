@@ -1,36 +1,18 @@
 <script lang="ts">
-  import BlurOverlay from "../../shared/BlurOverlay.svelte";
   import CodeBlock from "../../shared/CodeBlock.svelte";
   import FloatingCard from "../../shared/FloatingCard.svelte";
   import HollowButton from "../../shared/HollowButton.svelte";
   import SectionHeader from "../../shared/SectionHeader.svelte";
   import HomeBanner from "./HomeBanner.svelte";
   import HomeSection from "./HomeSection.svelte";
-
-  let showOverlay = true;
 </script>
 
 <section id="home">
-  {#if showOverlay}
-    <BlurOverlay>
-      <div class="overlay-content">
-        <h1>Welcome, stranger!</h1>
-        <p>
-          It looks like you're new here, so please note that Sims 4 Toolkit is
-          in early development. Some features may be missing, the documentation
-          may change frequently, and breaking changes may occur until version
-          1.0.0 is released.
-        </p>
-        <button on:click={() => (showOverlay = false)}>Got it</button>
-      </div>
-    </BlurOverlay>
-  {/if}
   <HomeBanner />
   <HomeSection>
     <slot>
       <SectionHeader title="Easy to Use" />
       <p>It just takes one line of code to load a package file.</p>
-      <button on:click={() => (showOverlay = true)}>open</button>
     </slot>
   </HomeSection>
   <HomeSection banded={true}>
@@ -125,12 +107,6 @@
       justify-content: center;
       align-content: space-around;
       flex-wrap: wrap;
-    }
-
-    .overlay-content {
-      p {
-        margin-bottom: 2.8em;
-      }
     }
   }
 </style>
