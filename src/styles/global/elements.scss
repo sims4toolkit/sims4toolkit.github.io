@@ -7,14 +7,15 @@ a {
   }
 }
 
-button,
-a.link-button {
+.button {
   background-color: transparent;
   color: var(--color-text);
   border: 1px solid var(--color-text);
   border-radius: 6px;
-  padding: 0.5em 1em;
+  padding: 8px 16px;
   text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
 
   &:hover {
     cursor: pointer;

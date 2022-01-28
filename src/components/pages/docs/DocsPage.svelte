@@ -2,15 +2,29 @@
   import DocsBanner from "./DocsBanner.svelte";
   import documentation from "../../../data/documentation.json";
   import { onMount } from "svelte";
-  import { replace } from "svelte-spa-router";
+  import { link, replace } from "svelte-spa-router";
+  import BlurOverlay from "../../shared/BlurOverlay.svelte";
 
   export let params: { [key: string]: any } = {};
+  let showErrorOverlay = false;
 
   interface PackageData {
     description?: string;
   }
 
   let packageData: PackageData = {};
+
+  const url = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${params.package}/index.json`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data); // Prints result from `response.json()` in getRequest
+    })
+    .catch((error) => {
+      console.error(error);
+      showErrorOverlay = true;
+    });
 
   onMount(() => {
     if (params.package in documentation) {
@@ -19,6 +33,10 @@
       replace("/page-not-found");
     }
   });
+
+  function goHome() {
+    replace("/docs");
+  }
 </script>
 
 <section id="docs-page">
@@ -29,6 +47,24 @@
     githubLink="https://github.com/sims4toolkit/{params.package}"
   />
 </section>
+{#if showErrorOverlay}
+  <BlurOverlay>
+    <div slot="content">
+      <h2>Oops...</h2>
+      <p>
+        Something went wrong, and the documentation for @s4tk/{params.package}
+        could not be found. Please try refreshing the page, and if the error persists,
+        <a href="/help" use:link>let me know</a>.
+      </p>
+    </div>
+    <div slot="actions">
+      <span class="button" on:click={() => (showErrorOverlay = false)}>
+        Dismiss
+      </span>
+      <a class="button" href="/docs" use:link>Back to Docs</a>
+    </div>
+  </BlurOverlay>
+{/if}
 
 <style lang="scss">
   section#docs-page {

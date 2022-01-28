@@ -49,7 +49,7 @@
       </p>
     </div>
     <div slot="actions">
-      <button on:click={() => (showOverlay = false)}>Got it</button>
+      <span class="button" on:click={() => (showOverlay = false)}>Got it</span>
     </div>
   </BlurOverlay>
 {/if}
