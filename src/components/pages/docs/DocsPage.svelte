@@ -35,6 +35,6 @@
 
 <style lang="scss">
   section#docs-page {
-    padding-bottom: 1em;
+    min-height: 100vh;
   }
 </style>

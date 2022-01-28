@@ -1,24 +1,53 @@
 <script lang="ts">
-  import { link, location } from "svelte-spa-router";
+  import { link } from "svelte-spa-router";
   import documentation from "../../../data/documentation.json";
   import ContentArea from "../../shared/ContentArea.svelte";
-  import FloatingCard from "../../shared/FloatingCard.svelte";
+  import SectionHeader from "../../shared/SectionHeader.svelte";
 </script>
 
 <section id="docs-landing-page">
-  {#each Object.entries(documentation) as [path, props], key (key)}
-    <ContentArea banded={key % 2 !== 0}>
-      <FloatingCard>
-        <div class="package-entry" slot="left">
-          <a href="/docs/{path}" use:link>{props.npmPackageName}</a>
-        </div>
-      </FloatingCard>
-    </ContentArea>
-  {/each}
+  <ContentArea>
+    <div class="docs-links-wrapper">
+      {#each Object.entries(documentation) as [path, props], key (key)}
+        <a href="/docs/{path}" use:link>
+          <div class="docs-link-container floating-card drop-shadow">
+            <SectionHeader title={props.npmPackageName} />
+            <p>{props.description}</p>
+          </div>
+        </a>
+      {/each}
+    </div>
+  </ContentArea>
 </section>
 
 <style lang="scss">
   section#docs-landing-page {
+    min-height: 100vh;
     padding-top: 50px;
+
+    .docs-links-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color-text);
+      position: relative;
+      flex: 40%;
+      transition: all ease 300ms;
+      top: 0;
+
+      &:hover {
+        top: -5px;
+      }
+    }
+
+    .docs-link-container {
+      background-color: var(--color-card);
+      padding: 1em 2em;
+      border-radius: 1em;
+    }
   }
 </style>

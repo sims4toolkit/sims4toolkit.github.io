@@ -3,7 +3,7 @@
     "repo": "https://github.com/sims4toolkit/encoding",
     "npmLink": "https://npmjs.com/package/@s4tk/encoding",
     "npmPackageName": "@s4tk/encoding",
-    "description": "Utility classes for binary encoding."
+    "description": "Utility classes for encoding binary files."
   },
   "hashing": {
     "repo": "https://github.com/sims4toolkit/hashing",
@@ -15,7 +15,7 @@
     "repo": "https://github.com/sims4toolkit/models",
     "npmLink": "https://npmjs.com/package/@s4tk/models",
     "npmPackageName": "@s4tk/models",
-    "description": "Models for packages and resources."
+    "description": "Models for packages and their resources."
   },
   "xml-dom": {
     "repo": "https://github.com/sims4toolkit/xml-dom",
