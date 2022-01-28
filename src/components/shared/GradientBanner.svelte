@@ -29,4 +29,19 @@
       margin: 3.5em 0;
     }
   }
+
+  $breakpoint: 896px;
+
+  @media only screen and (max-width: $breakpoint) {
+    .banner-content {
+      width: 100%;
+      padding: 0 1em;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint) {
+    .banner-content {
+      width: $breakpoint;
+    }
+  }
 </style>

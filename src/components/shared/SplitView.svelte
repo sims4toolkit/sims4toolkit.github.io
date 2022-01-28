@@ -12,7 +12,7 @@
 </div>
 
 <style lang="scss">
-  @media only screen and (max-width: 512px) {
+  @media only screen and (max-width: 768px) {
     .split-view {
       flex-direction: column;
       justify-content: center;
