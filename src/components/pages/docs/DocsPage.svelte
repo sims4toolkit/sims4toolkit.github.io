@@ -41,7 +41,7 @@
   {#if isError}
     <ContentArea>
       <div class="fadein">
-        <SectionHeader title="Unlock these docs for $4.99" />
+        <SectionHeader title="Unlock these docs for $4.04" />
         <p>
           Just kidding. This documentation couldn't be found. Please try
           refreshing the page, and <a href="/help" use:link>let me know</a> if the

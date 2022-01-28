@@ -5,7 +5,7 @@
 
 <section id="page-not-found">
   <ContentArea>
-    <SectionHeader title="Unlock this page for $4.99" />
+    <SectionHeader title="Unlock this page for $4.04" />
     <p>
       Just kidding. This page doesn't exist. Please <a href="/">go home</a>.
     </p>
