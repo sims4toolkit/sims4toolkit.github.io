@@ -18,7 +18,7 @@
       setTimeout(() => {
         showOverlay = true;
         localStorage.setItem("hasBeenOnboarded", "true");
-      }, 500);
+      }, 200);
     }
   });
 

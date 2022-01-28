@@ -14,7 +14,7 @@
   });
 </script>
 
-<div class="overlay">
+<div class="overlay fadein">
   <div class="popup" class:fill>
     <slot />
   </div>
