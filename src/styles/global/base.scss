@@ -6,6 +6,12 @@ html {
 
 body {
   margin: 0;
+
+  &.blur-effect-active {
+    height: 100vh;
+    overflow-y: hidden;
+    padding-right: 12px; // scrollbar
+  }
 }
 
 *,

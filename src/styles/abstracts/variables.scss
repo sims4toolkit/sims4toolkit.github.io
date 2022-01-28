@@ -38,9 +38,11 @@ $azure-blue: #0095eb;
     --color-footer: #{$darkest-gray};
     --color-scrollbar: rgb(135, 137, 141);
     --color-scrollbar-hover: rgb(190, 197, 199);
+    --color-blur-fallback: rgba(0, 0, 0, 0.9);
 
     // filters
     --filter-svg: var(--filter-light);
+    --filter-bg-blur: blur(12px) brightness(55%);
   }
 
   // light theme variables
@@ -56,8 +58,10 @@ $azure-blue: #0095eb;
     --color-footer: #{$dark-gray};
     --color-scrollbar: rgb(144, 147, 150);
     --color-scrollbar-hover: rgb(95, 99, 100);
+    --color-blur-fallback: rgba(255, 255, 255, 0.9);
 
     // filters
     --filter-svg: var(--filter-dark);
+    --filter-bg-blur: blur(12px);
   }
 }

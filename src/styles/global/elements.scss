@@ -6,3 +6,18 @@ a {
     text-decoration: none;
   }
 }
+
+button {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  border-radius: 6px;
+  padding: 0.5em 1em;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-light);
+  }
+}
