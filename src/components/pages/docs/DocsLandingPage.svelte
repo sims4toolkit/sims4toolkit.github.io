@@ -11,7 +11,7 @@
       {#each Object.entries(documentation) as [path, props], key (key)}
         <a href="/docs/{path}" use:link>
           <div class="docs-link-container floating-card drop-shadow">
-            <SectionHeader title={props.npmPackageName} />
+            <SectionHeader title="@s4tk/{path}" />
             <p>{props.description}</p>
           </div>
         </a>

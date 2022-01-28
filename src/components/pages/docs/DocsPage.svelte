@@ -7,9 +7,6 @@
   export let params: { [key: string]: any } = {};
 
   interface PackageData {
-    repo?: string;
-    npmLink?: string;
-    npmPackageName?: string;
     description?: string;
   }
 
@@ -27,9 +24,9 @@
 <section id="docs-page">
   <DocsBanner
     title={packageData.description}
-    npmLink={packageData.npmLink}
-    npmInstallText="npm i {packageData.npmPackageName}"
-    githubLink={packageData.repo}
+    npmLink="https://npmjs.com/package/@s4tk/{params.package}"
+    npmInstallText="npm i @s4tk/{params.package}"
+    githubLink="https://github.com/sims4toolkit/{params.package}"
   />
 </section>
 
