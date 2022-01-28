@@ -8,9 +8,7 @@
   <div id="home-banner" class="flex-center flex-col">
     <SplitView>
       <div class="home-banner-left text-center" slot="left">
-        <h2 class="text-center text-shadow">
-          Node.js Developer Tools<br />for The Sims 4
-        </h2>
+        <h2 class="text-center text-shadow">Node.js Library for The Sims 4</h2>
         <p>
           Read and write package files, tuning, SimData, and string tables with
           a fluent API.
