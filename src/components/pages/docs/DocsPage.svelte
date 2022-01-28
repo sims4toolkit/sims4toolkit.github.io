@@ -12,24 +12,34 @@
   let showErrorOverlay = false;
   let packageData: PackageData = {};
 
+  function fetchDocsIndex(pkgName: string) {
+    const indexUrl = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${pkgName}/index.json`;
+
+    return new Promise((resolve, reject) => {
+      fetch(indexUrl)
+        .then((response) => response.json())
+        .then((jsonData) => {
+          resolve(jsonData);
+        })
+        .catch(() => {
+          showErrorOverlay = true;
+          setTimeout(() => {
+            isError = true;
+          }, 200);
+        });
+    });
+  }
+
   $: {
-    const url = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${params.package}/index.json`;
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Prints result from `response.json()` in getRequest
-      })
-      .catch((error) => {
-        console.error(error);
-        showErrorOverlay = true;
-        setTimeout(() => {
-          isError = true;
-        }, 200);
-      });
-
     if (params.package in documentation) {
       packageData = documentation[params.package];
+      fetchDocsIndex(params.package)
+        .then((docsIndex) => {
+          console.log(docsIndex);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     } else {
       replace("/page-not-found");
     }
