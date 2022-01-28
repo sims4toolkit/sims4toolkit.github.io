@@ -43,10 +43,9 @@
         </div>
         <p slot="content">
           I create mods for players and tools for my peers, and I sincerely hope
-          you find them useful! I'm happy to share these creations for free,
-          however, it takes up a significant portion of my time, and also costs
-          money to maintain. If you enjoy my work and are able to support me on
-          Patreon or Ko-fi, I would be very appreciative. Thank you!
+          you find them useful. All of my mods and tools are available for free,
+          but if you enjoy my work and are able to support me on Patreon or
+          Ko-fi, I would be very appreciative. Thank you!
         </p>
         <div class="promo-links-container" slot="right">
           <HollowButton

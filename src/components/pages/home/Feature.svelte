@@ -22,12 +22,12 @@
     align-items: center;
 
     img {
-      max-width: 156px;
+      max-width: 128px;
+      margin: 1em 0;
     }
 
     span.text-wrapper {
       width: 100%;
-      text-align: left;
     }
   }
 </style>

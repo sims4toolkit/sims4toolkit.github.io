@@ -4,18 +4,18 @@
 
 <div class="three-features">
   <Feature
-    iconSrc="cog-outline"
+    iconSrc="sunny-outline"
+    title="Type Support"
+    description="Lorem ipsum doler sit amut whatever blah blah."
+  />
+  <Feature
+    iconSrc="code-slash-outline"
     title="Open Source"
     description="Lorem ipsum doler sit amut whatever blah blah."
   />
   <Feature
     iconSrc="cog-outline"
-    title="Open Source"
-    description="Lorem ipsum doler sit amut whatever blah blah."
-  />
-  <Feature
-    iconSrc="cog-outline"
-    title="Open Source"
+    title="More to Come"
     description="Lorem ipsum doler sit amut whatever blah blah."
   />
 </div>
