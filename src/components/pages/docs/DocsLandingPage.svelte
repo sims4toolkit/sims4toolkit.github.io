@@ -11,7 +11,7 @@
       {#each Object.entries(documentation) as [path, props], key (key)}
         <a href="/docs/{path}" use:link>
           <div class="docs-link-container floating-card drop-shadow">
-            <SectionHeader title="@s4tk/{path}" />
+            <span class="pkg-name"><SectionHeader title="@s4tk/{path}" /></span>
             <p>{props.description}</p>
           </div>
         </a>
@@ -31,6 +31,10 @@
       gap: 20px;
     }
 
+    span.pkg-name {
+      white-space: nowrap;
+    }
+
     a {
       text-decoration: none;
       color: var(--color-text);
@@ -48,6 +52,7 @@
       background-color: var(--color-card);
       padding: 1em 2em;
       border-radius: 1em;
+      height: 100%;
     }
   }
 </style>
