@@ -2,36 +2,31 @@
   import CodeBlock from "../../shared/CodeBlock.svelte";
   import FloatingCard from "../../shared/FloatingCard.svelte";
   import HollowButton from "../../shared/HollowButton.svelte";
+  import SectionHeader from "../../shared/SectionHeader.svelte";
   import HomeBanner from "./HomeBanner.svelte";
   import HomeSection from "./HomeSection.svelte";
 </script>
 
 <section id="home">
   <HomeBanner />
-  <HomeSection title="Easy to use">
+  <HomeSection>
     <slot>
-      <div class="flex-center flex-wrap-sm">
-        <p class="text-left w-100">
-          It just takes one line of code to load a package file.
-        </p>
-        <CodeBlock>
-          {`import { Sims4Package } from "@s4tk/core";
-
-const pkg = Sims4Package.from(buffer);`}
-        </CodeBlock>
-      </div>
+      <SectionHeader title="Easy to Use" />
+      <p>It just takes one line of code to load a package file.</p>
     </slot>
   </HomeSection>
-  <HomeSection title="Created with TypeScript">
+  <HomeSection banded={true}>
     <slot>
+      <SectionHeader title="Open Source" />
       <p>
         The Sims 4 Toolkit library comes with full type support in both
         TypeScript and JavaScript to make development as safe as can be.
       </p>
     </slot>
   </HomeSection>
-  <HomeSection title="More to come" banded={true}>
+  <HomeSection>
     <slot>
+      <SectionHeader title="More to Come" />
       <p>
         The core package of the S4TK library is just a foundation for many other
         modding tools to come. New packages will be added to the S4TK over time,
@@ -46,7 +41,7 @@ const pkg = Sims4Package.from(buffer);`}
       </p>
     </slot>
   </HomeSection>
-  <HomeSection>
+  <HomeSection banded={true}>
     <slot>
       <FloatingCard title="Created by Frankk">
         <div class="simself-portrait-container flex-center" slot="left">
@@ -83,11 +78,6 @@ const pkg = Sims4Package.from(buffer);`}
             text="Ko-fi"
             color="#fbaa19"
             link="https://ko-fi.com/frankkulak"
-          />
-          <HollowButton
-            text="GitHub"
-            color="#6a6a6a"
-            link="https://github.com/frankkulak"
           />
           <HollowButton
             text="Discord"

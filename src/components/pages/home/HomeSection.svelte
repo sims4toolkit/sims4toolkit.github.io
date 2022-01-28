@@ -1,15 +1,9 @@
 <script lang="ts">
-  import SectionHeader from "../../shared/SectionHeader.svelte";
-
   export let banded: boolean = false;
-  export let title: string = undefined;
 </script>
 
 <div class="home-section flex-center" class:banded>
   <div class="home-section-content">
-    {#if title !== undefined}
-      <SectionHeader {title} />
-    {/if}
     <slot />
   </div>
 </div>
