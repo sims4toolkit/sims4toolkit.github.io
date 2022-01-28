@@ -16,7 +16,10 @@
 
 <div class="overlay fadein">
   <div class="popup" class:fill>
-    <slot />
+    <div class="overlay-content-wrapper">
+      <slot name="content" />
+    </div>
+    <slot name="actions" />
   </div>
 </div>
 
@@ -41,6 +44,10 @@
 
       &.fill {
         width: $max-width;
+      }
+
+      .overlay-content-wrapper {
+        margin-bottom: 2.8em;
       }
     }
   }

@@ -39,7 +39,7 @@
 <Footer />
 {#if showOverlay}
   <BlurOverlay>
-    <div class="onboarding-content">
+    <div slot="content">
       <h2>Welcome, stranger!</h2>
       <p>
         It looks like you're new here, so please note that Sims 4 Toolkit is in
@@ -47,15 +47,13 @@
         change frequently, and breaking changes may occur until version 1.0.0 is
         released.
       </p>
+    </div>
+    <div slot="actions">
       <button on:click={() => (showOverlay = false)}>Got it</button>
     </div>
   </BlurOverlay>
 {/if}
 
 <style lang="scss">
-  .onboarding-content {
-    p {
-      margin-bottom: 2.8em;
-    }
-  }
+  // intentionally blank
 </style>
