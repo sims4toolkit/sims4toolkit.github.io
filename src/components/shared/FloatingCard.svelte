@@ -1,13 +1,15 @@
 <script lang="ts">
   import SectionHeader from "./SectionHeader.svelte";
 
-  export let title: string;
+  export let title: string = undefined;
 </script>
 
 <div class="floating-card drop-shadow">
   <slot name="left" />
   <div class="content">
-    <SectionHeader {title} />
+    {#if title}
+      <SectionHeader {title} />
+    {/if}
     <slot name="content" />
   </div>
   <slot name="right" />

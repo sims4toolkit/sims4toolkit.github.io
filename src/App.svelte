@@ -5,7 +5,8 @@
   import HomePage from "./components/pages/home/HomePage.svelte";
   import NotFoundPage from "./components/pages/NotFoundPage.svelte";
   import DesktopPage from "./components/pages/desktop/DesktopPage.svelte";
-  import DocumentationPage from "./components/pages/docs/DocsPage.svelte";
+  import DocsLandingPage from "./components/pages/docs/DocsLandingPage.svelte";
+  import DocsPage from "./components/pages/docs/DocsPage.svelte";
   import BlurOverlay from "./components/shared/BlurOverlay.svelte";
   import { onMount } from "svelte";
 
@@ -24,7 +25,8 @@
   // https://github.com/ItalyPaleAle/svelte-spa-router
   const routes = {
     "/": HomePage,
-    "/docs": DocumentationPage,
+    "/docs": DocsLandingPage,
+    "/docs/:package": DocsPage,
     "/desktop": DesktopPage,
     "*": NotFoundPage,
   };
