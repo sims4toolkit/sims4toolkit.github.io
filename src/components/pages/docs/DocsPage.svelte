@@ -1,7 +1,6 @@
 <script lang="ts">
   import DocsBanner from "./DocsBanner.svelte";
   import documentation from "../../../data/documentation.json";
-  import { onMount } from "svelte";
   import { link, replace } from "svelte-spa-router";
   import BlurOverlay from "../../shared/BlurOverlay.svelte";
 
@@ -14,28 +13,24 @@
 
   let packageData: PackageData = {};
 
-  const url = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${params.package}/index.json`;
+  $: {
+    const url = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${params.package}/index.json`;
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data); // Prints result from `response.json()` in getRequest
-    })
-    .catch((error) => {
-      console.error(error);
-      showErrorOverlay = true;
-    });
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Prints result from `response.json()` in getRequest
+      })
+      .catch((error) => {
+        console.error(error);
+        showErrorOverlay = true;
+      });
 
-  onMount(() => {
     if (params.package in documentation) {
       packageData = documentation[params.package];
     } else {
       replace("/page-not-found");
     }
-  });
-
-  function goHome() {
-    replace("/docs");
   }
 </script>
 
