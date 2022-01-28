@@ -5,18 +5,19 @@
   import BlurOverlay from "../../shared/BlurOverlay.svelte";
   import SectionHeader from "../../shared/SectionHeader.svelte";
   import ContentArea from "../../shared/ContentArea.svelte";
+  import DocsIndex from "./DocsIndex.svelte";
+  import SplitView from "../../shared/SplitView.svelte";
 
   export let params: { [key: string]: any } = {};
 
   let isError = false;
   let showErrorOverlay = false;
-  let packageData: PackageData = {};
+  let packageData: PackageData;
+  let indexData: DocsIndexData;
 
-  function fetchDocsIndex(pkgName: string) {
-    const indexUrl = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${pkgName}/index.json`;
-
-    return new Promise((resolve, reject) => {
-      fetch(indexUrl)
+  function fetchDocsIndex() {
+    return new Promise((resolve) => {
+      fetch(packageData.indexLink)
         .then((response) => response.json())
         .then((jsonData) => {
           resolve(jsonData);
@@ -33,9 +34,9 @@
   $: {
     if (params.package in documentation) {
       packageData = documentation[params.package];
-      fetchDocsIndex(params.package)
-        .then((docsIndex) => {
-          console.log(docsIndex);
+      fetchDocsIndex()
+        .then((data) => {
+          indexData = data as DocsIndexData;
         })
         .catch((err) => {
           console.error(err);
@@ -62,6 +63,18 @@
           <a href={packageData.repoLink} target="_blank">on GitHub</a>.
         </p>
       </div>
+    </ContentArea>
+  {/if}
+  {#if !isError && indexData}
+    <ContentArea>
+      <SplitView>
+        <div slot="left">
+          <DocsIndex {indexData} />
+        </div>
+        <div slot="right">
+          <p>Hi</p>
+        </div>
+      </SplitView>
     </ContentArea>
   {/if}
 </section>
