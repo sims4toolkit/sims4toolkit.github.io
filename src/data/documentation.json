@@ -1,14 +1,26 @@
 {
   "encoding": {
-    "description": "Utility classes for encoding binary files."
+    "description": "Utility classes for encoding binary files.",
+    "repoLink": "https://github.com/sims4toolkit/encoding",
+    "npmLink": "https://npmjs.com/package/@s4tk/encoding",
+    "npmName": "@s4tk/encoding"
   },
   "hashing": {
-    "description": "Utility functions for FNV hashing."
+    "description": "Utility functions for FNV hashing.",
+    "repoLink": "https://github.com/sims4toolkit/hashing",
+    "npmLink": "https://npmjs.com/package/@s4tk/hashing",
+    "npmName": "@s4tk/hashing"
   },
   "models": {
-    "description": "Models for packages and their resources."
+    "description": "Models for packages and their resources.",
+    "repoLink": "https://github.com/sims4toolkit/models",
+    "npmLink": "https://npmjs.com/package/@s4tk/models",
+    "npmName": "@s4tk/models"
   },
   "xml-dom": {
-    "description": "Models for XML, tailored for tuning."
+    "description": "Models for XML, tailored for tuning.",
+    "repoLink": "https://github.com/sims4toolkit/xml-dom",
+    "npmLink": "https://npmjs.com/package/@s4tk/xml-dom",
+    "npmName": "@s4tk/xml-dom"
   }
 }

@@ -3,14 +3,13 @@
   import documentation from "../../../data/documentation.json";
   import { link, replace } from "svelte-spa-router";
   import BlurOverlay from "../../shared/BlurOverlay.svelte";
+  import SectionHeader from "../../shared/SectionHeader.svelte";
+  import ContentArea from "../../shared/ContentArea.svelte";
 
   export let params: { [key: string]: any } = {};
+
+  let isError = false;
   let showErrorOverlay = false;
-
-  interface PackageData {
-    description?: string;
-  }
-
   let packageData: PackageData = {};
 
   $: {
@@ -24,6 +23,9 @@
       .catch((error) => {
         console.error(error);
         showErrorOverlay = true;
+        setTimeout(() => {
+          isError = true;
+        }, 200);
       });
 
     if (params.package in documentation) {
@@ -35,12 +37,23 @@
 </script>
 
 <section id="docs-page">
-  <DocsBanner
-    title={packageData.description}
-    npmLink="https://npmjs.com/package/@s4tk/{params.package}"
-    npmInstallText="npm i @s4tk/{params.package}"
-    githubLink="https://github.com/sims4toolkit/{params.package}"
-  />
+  <DocsBanner {packageData} />
+  {#if isError}
+    <ContentArea>
+      <div class="fadein">
+        <SectionHeader title="Unlock these docs for $4.99" />
+        <p>
+          Just kidding. This documentation couldn't be found. Please try
+          refreshing the page, and <a href="/help" use:link>let me know</a> if the
+          error persists.
+        </p>
+        <p>
+          For the time being, feel free to browse the project
+          <a href={packageData.repoLink}>on GitHub</a>.
+        </p>
+      </div>
+    </ContentArea>
+  {/if}
 </section>
 {#if showErrorOverlay}
   <BlurOverlay>
