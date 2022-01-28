@@ -1,17 +1,27 @@
 <script lang="ts">
-  // intentionally blank
+  import ContentArea from "../shared/ContentArea.svelte";
+  import SectionHeader from "../shared/SectionHeader.svelte";
 </script>
 
-<section id="not-found" class="under-navbar flex-center">
-  <h2>How the hecking heck did you get here?</h2>
-  <p>
-    This page is a figment of your imagination. Please <a href="/">go home</a>.
-  </p>
+<section id="page-not-found">
+  <ContentArea>
+    <SectionHeader title="Unlock this page for $4.99" />
+    <p>
+      Just kidding. This page doesn't exist. Please <a href="/">go home</a>.
+    </p>
+    <p class="disclaimer">Error 404</p>
+  </ContentArea>
 </section>
 
 <style lang="scss">
-  section#not-found {
+  section#page-not-found {
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
-    height: 100vh;
+    justify-content: center;
+
+    .disclaimer {
+      margin-top: 4em;
+    }
   }
 </style>

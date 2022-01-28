@@ -5,7 +5,7 @@
   import SectionHeader from "../../shared/SectionHeader.svelte";
 </script>
 
-<section id="docs-landing-page">
+<section id="docs-landing-page" class="under-navbar">
   <ContentArea>
     <div class="docs-links-wrapper">
       {#each Object.entries(documentation) as [path, props], key (key)}
@@ -23,7 +23,6 @@
 <style lang="scss">
   section#docs-landing-page {
     min-height: 100vh;
-    padding-top: 50px;
 
     .docs-links-wrapper {
       display: flex;

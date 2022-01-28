@@ -49,7 +49,7 @@
         </p>
         <p>
           For the time being, feel free to browse the project
-          <a href={packageData.repoLink}>on GitHub</a>.
+          <a href={packageData.repoLink} target="_blank">on GitHub</a>.
         </p>
       </div>
     </ContentArea>

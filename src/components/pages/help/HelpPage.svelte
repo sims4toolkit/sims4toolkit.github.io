@@ -6,7 +6,7 @@
   const discordLink = "https://discord.gg/qNhD3Jh";
 </script>
 
-<section id="help-page">
+<section id="help-page" class="under-navbar">
   <ContentArea>
     <SectionHeader title="Website troubles" />
     <p>
@@ -47,6 +47,5 @@
 <style lang="scss">
   section#help-page {
     min-height: 100vh;
-    padding-top: 50px;
   }
 </style>

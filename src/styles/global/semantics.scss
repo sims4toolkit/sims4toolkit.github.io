@@ -22,3 +22,7 @@
 .default-gradient-bg {
   @include gradient-bg($sage, $sky-blue);
 }
+
+.under-navbar {
+  margin-top: 50px;
+}
