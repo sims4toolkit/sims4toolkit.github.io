@@ -9,7 +9,7 @@
   <ContentArea>
     <div class="docs-links-wrapper">
       {#each Object.entries(documentation) as [path, props], key (key)}
-        <a href="/docs/{path}" use:link>
+        <a href="/docs/{path}" use:link class="move-on-hover">
           <div class="docs-link-container floating-card drop-shadow">
             <span class="pkg-name"><SectionHeader title="@s4tk/{path}" /></span>
             <p>{props.description}</p>
@@ -37,20 +37,10 @@
     a {
       text-decoration: none;
       color: var(--color-text);
-      position: relative;
       flex: 40%;
-      transition: all ease 300ms;
-      top: 0;
-
-      &:hover {
-        top: -5px;
-      }
     }
 
     .docs-link-container {
-      background-color: var(--color-card);
-      padding: 1em 2em;
-      border-radius: 1em;
       height: 100%;
     }
   }

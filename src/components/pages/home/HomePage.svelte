@@ -5,43 +5,33 @@
   import SectionHeader from "../../shared/SectionHeader.svelte";
   import HomeBanner from "./HomeBanner.svelte";
   import ContentArea from "../../shared/ContentArea.svelte";
+  import ThreeFeatures from "./ThreeFeatures.svelte";
+  import SplitView from "../../shared/SplitView.svelte";
 </script>
 
 <section id="home">
   <HomeBanner />
   <ContentArea>
     <slot>
-      <SectionHeader title="Easy to Use" />
-      <p>It just takes one line of code to load a package file.</p>
+      <SplitView>
+        <div slot="left">
+          <SectionHeader title="Easy to Use" />
+          <p>It just takes one line of code to load a package file.</p>
+        </div>
+        <div slot="right">
+          <CodeBlock>
+            {`stuff();`}
+          </CodeBlock>
+        </div>
+      </SplitView>
     </slot>
   </ContentArea>
   <ContentArea banded={true}>
     <slot>
-      <SectionHeader title="Open Source" />
-      <p>
-        The Sims 4 Toolkit library comes with full type support in both
-        TypeScript and JavaScript to make development as safe as can be.
-      </p>
+      <ThreeFeatures />
     </slot>
   </ContentArea>
   <ContentArea>
-    <slot>
-      <SectionHeader title="More to Come" />
-      <p>
-        The core package of the S4TK library is just a foundation for many other
-        modding tools to come. New packages will be added to the S4TK over time,
-        including @s4tk/gen, which will assist with generating bulk tuning and
-        automatically generate SimData from its tuning. The next planned package
-        is @s4tk/tdesc, for validating tuning against TDESCs.
-      </p>
-      <p>
-        Node.js not your thing? No worries. S4TK Desktop is underway - this is a
-        desktop app allowing you to leverage the power of the S4TK library from
-        the comfort of an IDE.
-      </p>
-    </slot>
-  </ContentArea>
-  <ContentArea banded={true}>
     <slot>
       <FloatingCard title="Created by Frankk">
         <div class="simself-portrait-container flex-center" slot="left">

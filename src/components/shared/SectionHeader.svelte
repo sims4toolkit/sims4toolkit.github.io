@@ -1,9 +1,10 @@
 <script lang="ts">
+  export let nowrap: boolean = false;
   export let title: string;
 </script>
 
 <div class="section-header">
-  <h3>{title}</h3>
+  <h3 class:nowrap>{title}</h3>
   <hr />
 </div>
 
