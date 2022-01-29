@@ -7,6 +7,7 @@
   import ContentArea from "../../shared/ContentArea.svelte";
   import ThreeFeatures from "./ThreeFeatures.svelte";
   import SplitView from "../../shared/SplitView.svelte";
+  import SocialLinks from "./SocialLinks.svelte";
 </script>
 
 <section id="home">
@@ -15,12 +16,72 @@
     <slot>
       <SplitView>
         <div slot="left">
-          <SectionHeader title="Easy to Use" />
-          <p>It just takes one line of code to load a package file.</p>
+          <SectionHeader title="Easily Edit Binary Resources" />
+          <p>
+            Working with packages, string tables, and SimDatas is as easy as
+          </p>
         </div>
         <div slot="right">
           <CodeBlock>
-            {`stuff();`}
+            {`const stbl = StringTableResource.create();
+stbl.addAndHash("My first string.");
+
+pkg.add({
+  type: BinaryResourceType.StringTable,
+  group: 0,
+  instance: fnv64("MyNewStringTable")
+}, stbl);
+`}
+          </CodeBlock>
+        </div>
+      </SplitView>
+    </slot>
+  </ContentArea>
+  <ContentArea banded={true}>
+    <slot>
+      <SplitView>
+        <div slot="left">
+          <SectionHeader title="Easily Edit Binary Resources" />
+          <p>
+            Working with packages, string tables, and SimDatas is as easy as
+          </p>
+        </div>
+        <div slot="right">
+          <CodeBlock>
+            {`const stbl = StringTableResource.create();
+stbl.addAndHash("My first string.");
+
+pkg.add({
+  type: BinaryResourceType.StringTable,
+  group: 0,
+  instance: fnv64("MyNewStringTable")
+}, stbl);
+`}
+          </CodeBlock>
+        </div>
+      </SplitView>
+    </slot>
+  </ContentArea>
+  <ContentArea>
+    <slot>
+      <SplitView>
+        <div slot="left">
+          <SectionHeader title="Easily Edit Binary Resources" />
+          <p>
+            Working with packages, string tables, and SimDatas is as easy as
+          </p>
+        </div>
+        <div slot="right">
+          <CodeBlock>
+            {`const stbl = StringTableResource.create();
+stbl.addAndHash("My first string.");
+
+pkg.add({
+  type: BinaryResourceType.StringTable,
+  group: 0,
+  instance: fnv64("MyNewStringTable")
+}, stbl);
+`}
           </CodeBlock>
         </div>
       </SplitView>
@@ -33,69 +94,11 @@
   </ContentArea>
   <ContentArea>
     <slot>
-      <FloatingCard title="Created by Frankk">
-        <div class="simself-portrait-container flex-center" slot="left">
-          <img
-            src="../assets/frankk.png"
-            alt="Frankk Simself"
-            class="simself-portrait drop-shadow"
-          />
-        </div>
-        <p slot="content">
-          I create mods for players and tools for my peers, and I sincerely hope
-          you find them useful. All of my mods and tools are available for free,
-          but if you enjoy my work and are able to support me on Patreon or
-          Ko-fi, I would be very appreciative. Thank you!
-        </p>
-        <div class="promo-links-container" slot="right">
-          <HollowButton
-            text="Website"
-            color="#6172BD"
-            link="https://frankkmods.com"
-          />
-          <HollowButton
-            text="Twitter"
-            color="#29A7DF"
-            link="https://twitter.com/frankkulakmods"
-          />
-          <HollowButton
-            text="Patreon"
-            color="#F96854"
-            link="https://patreon.frankkmods.com"
-          />
-          <HollowButton
-            text="Ko-fi"
-            color="#fbaa19"
-            link="https://ko-fi.com/frankkulak"
-          />
-          <HollowButton
-            text="Discord"
-            color="#7289DA"
-            link="https://discord.gg/qNhD3Jh"
-          />
-        </div>
-      </FloatingCard>
+      <SocialLinks />
     </slot>
   </ContentArea>
 </section>
 
 <style lang="scss">
-  section#home {
-    .simself-portrait-container {
-      height: 100%;
-
-      img.simself-portrait {
-        height: 128px;
-        border-radius: 50%;
-        margin: 1em 0.5em;
-      }
-    }
-
-    .promo-links-container {
-      display: flex;
-      justify-content: center;
-      align-content: space-around;
-      flex-wrap: wrap;
-    }
-  }
+  // intentionally blank
 </style>
