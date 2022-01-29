@@ -1,12 +1,13 @@
 <script lang="ts">
-  // intentionally blank
+  export let centerV = true;
+  export let rightFill = false;
 </script>
 
-<div class="split-view flex-center-v flex-space-between w-100">
+<div class="split-view flex-space-between w-100" class:flex-center-v={centerV}>
   <div class="left">
     <slot name="left" />
   </div>
-  <div class="right">
+  <div class="right" class:w-100={rightFill}>
     <slot name="right" />
   </div>
 </div>

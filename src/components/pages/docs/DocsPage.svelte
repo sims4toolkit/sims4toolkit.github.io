@@ -7,6 +7,8 @@
   import ContentArea from "../../shared/ContentArea.svelte";
   import DocsIndex from "./DocsIndex.svelte";
   import SplitView from "../../shared/SplitView.svelte";
+  import DocsContentSection from "./DocsContentSection.svelte";
+  import { getDocumentationIndex } from "../../../services/documentation";
 
   export let params: { [key: string]: any } = {};
 
@@ -15,31 +17,18 @@
   let packageData: PackageData;
   let indexData: DocsIndexData;
 
-  function fetchDocsIndex() {
-    return new Promise((resolve) => {
-      fetch(packageData.indexLink)
-        .then((response) => response.json())
-        .then((jsonData) => {
-          resolve(jsonData);
+  $: {
+    if (params.package in documentation) {
+      packageData = documentation[params.package];
+      getDocumentationIndex(params.package)
+        .then((data) => {
+          indexData = data as DocsIndexData;
         })
         .catch(() => {
           showErrorOverlay = true;
           setTimeout(() => {
             isError = true;
           }, 200);
-        });
-    });
-  }
-
-  $: {
-    if (params.package in documentation) {
-      packageData = documentation[params.package];
-      fetchDocsIndex()
-        .then((data) => {
-          indexData = data as DocsIndexData;
-        })
-        .catch((err) => {
-          console.error(err);
         });
     } else {
       replace("/page-not-found");
@@ -66,12 +55,12 @@
     </ContentArea>
   {:else if indexData}
     <ContentArea>
-      <SplitView>
+      <SplitView centerV={false} rightFill={true}>
         <div slot="left">
           <DocsIndex {indexData} />
         </div>
-        <div slot="right">
-          <p>Hi</p>
+        <div slot="right" class="docs-content-wrapper">
+          <DocsContentSection />
         </div>
       </SplitView>
     </ContentArea>
@@ -105,5 +94,12 @@
 <style lang="scss">
   section#docs-page {
     min-height: 100vh;
+
+    .docs-content-wrapper {
+      padding: {
+        left: 2em;
+        top: 1.5em;
+      }
+    }
   }
 </style>

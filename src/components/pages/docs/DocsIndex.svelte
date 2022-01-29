@@ -33,6 +33,7 @@
     .docs-index-section {
       border-left: 1px solid var(--color-text);
       padding-left: 0.5em;
+      min-width: 200px;
 
       &:not(:last-child) {
         margin-bottom: 2em;
