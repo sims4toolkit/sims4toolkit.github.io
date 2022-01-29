@@ -48,6 +48,7 @@
       div.entry {
         padding: 0.5em;
         border-radius: 6px;
+        white-space: nowrap;
 
         &.active {
           background-color: var(--color-text);
