@@ -64,8 +64,7 @@
         </p>
       </div>
     </ContentArea>
-  {/if}
-  {#if !isError && indexData}
+  {:else if indexData}
     <ContentArea>
       <SplitView>
         <div slot="left">
@@ -75,6 +74,12 @@
           <p>Hi</p>
         </div>
       </SplitView>
+    </ContentArea>
+  {:else if !showErrorOverlay}
+    <ContentArea>
+      <div class="flex-center w-100">
+        <h1>Loading...</h1>
+      </div>
     </ContentArea>
   {/if}
 </section>
