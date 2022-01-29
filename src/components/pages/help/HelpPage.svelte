@@ -36,10 +36,10 @@
       <a href={discordLink} target="_blank">on Discord</a>.
     </p>
     <p>
-      Please note that I will NOT be offering general help with Node.js or
-      JavaScript. There are so, so, so many resources available to learn them
-      online. Please restrict your questions to those pertaining to S4TK
-      specifically, rather than Node.js or JavaScript.
+      Please note that I will NOT be offering general help with Node.js,
+      JavaScript, or TypeScript. There are so, so, so many resources available
+      to learn them online. Please restrict your questions to those pertaining
+      to S4TK specifically.
     </p>
   </ContentArea>
 </section>
