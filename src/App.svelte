@@ -28,13 +28,15 @@
     "/": HomePage,
     "/help": HelpPage,
     "/docs": DocsLandingPage,
-    "/docs/:package": DocsPage,
+    "/docs/:package/:version?/:section?/:entry?": DocsPage,
     "/desktop": DesktopPage,
     "*": NotFoundPage,
   };
 
-  window.addEventListener("hashchange", function () {
-    window.scrollTo(0, 0);
+  window.addEventListener("hashchange", function (event) {
+    if (!(event.oldURL.includes("/docs/") && event.newURL.includes("/docs/"))) {
+      window.scrollTo(0, 0);
+    }
   });
 </script>
 

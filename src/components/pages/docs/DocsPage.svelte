@@ -9,8 +9,9 @@
   import SplitView from "../../shared/SplitView.svelte";
   import DocsContentSection from "./DocsContentSection.svelte";
   import { getDocumentationIndex } from "../../../services/documentation";
+  import { setDocsPageRoute } from "../../../services/routing";
 
-  export let params: { [key: string]: any } = {};
+  export let params: DocsPageParams;
 
   let isError = false;
   let showErrorOverlay = false;
@@ -19,6 +20,13 @@
 
   $: {
     if (params.package in documentation) {
+      if (!params.version || !params.section || !params.entry) {
+        params.version ??= "0.1.0"; // FIXME: get latest
+        params.section ??= "packages"; // FIXME: get first section
+        params.entry ??= "package"; // FIXME: get first entry
+        setDocsPageRoute(params);
+      }
+
       packageData = documentation[params.package];
       getDocumentationIndex(params.package)
         .then((data) => {
@@ -57,10 +65,10 @@
     <ContentArea>
       <SplitView centerV={false} rightFill={true}>
         <div slot="left">
-          <DocsIndex {indexData} />
+          <DocsIndex {indexData} bind:params />
         </div>
         <div slot="right">
-          <DocsContentSection />
+          <DocsContentSection bind:params />
         </div>
       </SplitView>
     </ContentArea>

@@ -7,7 +7,8 @@
     "sass:build": "sass src/styles/_index.scss public/build/global.css",
     "sass:watch": "sass --watch src/styles/_index.scss public/build/global.css",
     "dev": "npm run clean ; concurrently \"npm run sass:watch\" \"rollup -c -w\"",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "serve": "sirv public --no-clear --host"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
