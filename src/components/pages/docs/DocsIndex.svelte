@@ -11,24 +11,58 @@
 </script>
 
 <section id="docs-index">
-  {#each indexData.sections as section, sectionKey (sectionKey)}
-    <p>{section.title}</p>
-    {#each section.entries as entry, entryKey (entryKey)}
-      <p
-        class:active={sectionKey === activeSection && entryKey === activeEntry}
-        on:click={() => setActive(sectionKey, entryKey)}
-      >
-        {entry.type}
-        {entry.name}
-      </p>
-    {/each}
+  {#each indexData as section, sectionKey (sectionKey)}
+    <div class="docs-index-section">
+      <h6>{section.title}</h6>
+      {#each section.entries as entry, entryKey (entryKey)}
+        <div
+          class="entry"
+          class:active={sectionKey === activeSection &&
+            entryKey === activeEntry}
+          on:click={() => setActive(sectionKey, entryKey)}
+        >
+          {entry}
+        </div>
+      {/each}
+    </div>
   {/each}
 </section>
 
 <style lang="scss">
   section#docs-index {
-    .active {
-      color: var(--color-accent);
+    .docs-index-section {
+      border-left: 1px solid var(--color-text);
+      padding-left: 0.5em;
+
+      &:not(:last-child) {
+        margin-bottom: 2em;
+      }
+
+      h6 {
+        text-transform: uppercase;
+        margin-left: 0.8em;
+        margin-bottom: 0.8em;
+        opacity: 0.65;
+      }
+
+      div.entry {
+        padding: 0.5em;
+        border-radius: 6px;
+
+        &.active {
+          background-color: var(--color-text);
+          color: var(--color-bg);
+        }
+
+        &:hover:not(.active) {
+          background-color: var(--color-bg-secondary);
+          cursor: pointer;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 0.5em;
+        }
+      }
     }
   }
 </style>

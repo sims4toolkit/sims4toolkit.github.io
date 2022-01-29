@@ -8,15 +8,7 @@ interface PackageData {
   indexLink: string;
 }
 
-interface DocsIndexEntry {
-  type: string;
-  name: string;
-  url: string;
-}
-
-interface DocsIndexData {
-  sections: {
-    title: string;
-    entries: DocsIndexEntry[];
-  }[];
-}
+type DocsIndexData = {
+  title: string;
+  entries: string[];
+}[];
