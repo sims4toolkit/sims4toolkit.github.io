@@ -51,7 +51,7 @@ $azure-blue: #0095eb;
     --color-bg: #{$cool-white};
     --color-bg-secondary: #e5e6ea;
     --color-text: #{$darker-gray};
-    --color-accent: #{$seafoam};
+    --color-accent: #{darken($seafoam, 10)};
     --color-accent-secondary: #{$azure-blue};
     --color-card: #e5e8eb;
     --color-navbar: rgba(231, 236, 238, 0.7);

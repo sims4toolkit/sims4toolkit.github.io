@@ -59,7 +59,7 @@
         <div slot="left">
           <DocsIndex {indexData} />
         </div>
-        <div slot="right" class="docs-content-wrapper">
+        <div slot="right">
           <DocsContentSection />
         </div>
       </SplitView>
@@ -94,12 +94,5 @@
 <style lang="scss">
   section#docs-page {
     min-height: 100vh;
-
-    .docs-content-wrapper {
-      padding: {
-        left: 2em;
-        top: 1.5em;
-      }
-    }
   }
 </style>
