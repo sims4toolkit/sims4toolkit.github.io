@@ -5,20 +5,27 @@
   export let params: DocsPageParams;
   export let indexData: DocsIndexData;
 
-  let activeSection = 0;
-  let activeEntry = 0;
-
   let versions: string[] = ["0.1.1", "0.1.0"];
   let versionSelect: HTMLSelectElement;
-
-  function setActive(sectionKey: number, entryKey: number) {
-    activeSection = sectionKey;
-    activeEntry = entryKey;
-  }
 
   function onVersionChange() {
     if (versionSelect.value !== params.version) {
       params.version = versionSelect.value;
+      setDocsPageRoute(params);
+    }
+  }
+
+  function isActive(section: string, entry: string) {
+    return (
+      section.toLowerCase() === params.section.toLowerCase() &&
+      entry.toLowerCase() === params.entry.toLowerCase()
+    );
+  }
+
+  function setActive(section: string, entry: string) {
+    if (section !== params.section || entry !== params.entry) {
+      params.section = section;
+      params.entry = entry;
       setDocsPageRoute(params);
     }
   }
@@ -45,9 +52,8 @@
       {#each section.entries as entry, entryKey (entryKey)}
         <div
           class="entry"
-          class:active={sectionKey === activeSection &&
-            entryKey === activeEntry}
-          on:click={() => setActive(sectionKey, entryKey)}
+          class:active={isActive(section.title, entry)}
+          on:click={() => setActive(section.title, entry)}
         >
           {entry}
         </div>
