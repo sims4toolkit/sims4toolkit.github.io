@@ -6,7 +6,7 @@
   <Feature
     iconSrc="rocket-outline"
     title="Great Performance"
-    description="Read packages in an instant, and enable filters and cacheing to speed up larger tasks."
+    description="Read single packages in an instant, and enable filters and cacheing to speed up larger tasks."
   />
   <Feature
     iconSrc="earth-outline"
@@ -15,8 +15,8 @@
   />
   <Feature
     iconSrc="library-outline"
-    title="Growing Library"
-    description="S4TK is still early in development, and many more packages are planned to be added."
+    title="Ever Growing"
+    description="S4TK is in active development, and many more packages are planned to be added."
   />
 </div>
 

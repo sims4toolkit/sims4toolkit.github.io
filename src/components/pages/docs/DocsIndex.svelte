@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { replace } from "svelte-spa-router";
   import { setDocsPageRoute } from "../../../services/routing";
 
   export let params: DocsPageParams;
   export let indexData: DocsIndexData;
 
-  let versions: string[] = ["0.1.1", "0.1.0"];
   let versionSelect: HTMLSelectElement;
+  let versions: string[] = ["0.1.1", "0.1.0"]; // FIXME: get from indexData
 
   function onVersionChange() {
     if (versionSelect.value !== params.version) {

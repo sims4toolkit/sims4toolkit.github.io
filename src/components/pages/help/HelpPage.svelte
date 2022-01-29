@@ -10,15 +10,14 @@
   <ContentArea>
     <SectionHeader title="Website troubles" />
     <p>
-      Incorrect/missing docs? Typo? Error 404? Please let me know about any
-      issues with the website
+      Incorrect/missing docs? Typo? Error 404? Please let me know
       <a href={discordLink} target="_blank">on Discord</a>.
     </p>
   </ContentArea>
   <ContentArea banded={true}>
     <SectionHeader title="Package no worky" />
     <p>
-      Found a bug in any of the S4TK packages? Open an issue in its GitHub
+      Found a bug in one of the S4TK packages? Open an issue in its GitHub
       repository. Please search the existing issues before posting to make sure
       you are not creating a duplicate.
     </p>
