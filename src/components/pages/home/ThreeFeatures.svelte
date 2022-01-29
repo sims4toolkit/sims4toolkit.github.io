@@ -4,19 +4,19 @@
 
 <div class="three-features">
   <Feature
-    iconSrc="typescript-logo"
-    title="Made with TypeScript"
-    description="Coming with full type support makes S4TK easy to use and robust."
+    iconSrc="rocket-outline"
+    title="Great Performance"
+    description="Read packages in an instant, and enable filters and cacheing to speed up larger tasks."
   />
   <Feature
-    iconSrc="code-slash-outline"
+    iconSrc="earth-outline"
     title="Open Source"
-    description="Feel free to view the source code, open issues, make pull requests, or fork the project on GitHub."
+    description="View the source code, open issues, make pull requests, or fork the project on GitHub."
   />
   <Feature
-    iconSrc="cog-outline"
-    title="More to Come"
-    description="Lorem ipsum doler sit amut whatever blah blah."
+    iconSrc="library-outline"
+    title="Growing Library"
+    description="S4TK is still early in development, and many more packages are planned to be added."
   />
 </div>
 
