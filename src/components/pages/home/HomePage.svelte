@@ -17,11 +17,12 @@
   </ContentArea>
   <ContentArea banded={true}>
     <slot>
-      <SplitView>
-        <div slot="left">
-          <SectionHeader title="Easily Edit Binary Resources" />
+      <SplitView expandOnCollapse={true}>
+        <div slot="left" class="text-left">
+          <SectionHeader title="Full Functional XML DOM for Tuning" />
           <p>
-            Working with packages, string tables, and SimDatas is as easy as
+            Working with packages, string tables, and SimDatas is just as easy
+            as plain-text XML, since they all come with fully parsed models.
           </p>
         </div>
         <div slot="right">
@@ -42,8 +43,8 @@ pkg.add({
   </ContentArea>
   <ContentArea banded={false}>
     <slot>
-      <SplitView>
-        <div slot="right">
+      <SplitView reverseOnCollapse={true} expandOnCollapse={true}>
+        <div slot="right" class="text-left">
           <SectionHeader title="Easily Edit Binary Resources" />
           <p>
             Working with packages, string tables, and SimDatas is as easy as
@@ -67,8 +68,8 @@ pkg.add({
   </ContentArea>
   <ContentArea banded={true}>
     <slot>
-      <SplitView>
-        <div slot="left">
+      <SplitView expandOnCollapse={true}>
+        <div slot="left" class="text-left">
           <SectionHeader title="Easily Edit Binary Resources" />
           <p>
             Working with packages, string tables, and SimDatas is as easy as
