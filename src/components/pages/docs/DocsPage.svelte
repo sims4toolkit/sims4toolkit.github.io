@@ -78,7 +78,7 @@
           <DocsIndex {indexData} bind:activeDocs />
         </div>
         <div slot="right">
-          <DocsContent bind:activeDocs />
+          <DocsContent pkg={params.package} bind:activeDocs />
         </div>
       </SplitView>
     </ContentArea>

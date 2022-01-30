@@ -23,18 +23,13 @@ export function getDocumentationIndex(packageName: string): Promise<DocsIndexDat
  * Returns a promise that resolves with the data required to populate the
  * content for an entry's docs.
  * 
- * @param packageName Name of package to get doc for
- * @param section Section to look in to get doc
- * @param entry Entry to get doc for
+ * @param pkg Package to get docs for
+ * @param activeDocs Object with version, group, and item to use
  */
-export function getDocumentation(
-  packageName: string,
-  section: string,
-  entry: string
-): Promise<any> {
+export function getDocumentation(pkg: string, { version, group, item }: ActiveDocs): Promise<any> {
   return new Promise((resolve, reject) => {
     console.log("Getting docs"); // FIXME: delete
-    const url = `https://raw.githubusercontent.com/sims4toolkit/documentation/main/${packageName}/index.json`;
+    const url = `https://github.com/sims4toolkit/${pkg}/blob/version/${version.replace('.', '-')}/docs/${group}/${item}.json`;
 
     fetch(url)
       .then((response) => response.json())
