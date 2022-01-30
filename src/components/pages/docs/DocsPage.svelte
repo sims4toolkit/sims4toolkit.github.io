@@ -7,7 +7,7 @@
   import ContentArea from "../../shared/ContentArea.svelte";
   import DocsIndex from "./DocsIndex.svelte";
   import SplitView from "../../shared/SplitView.svelte";
-  import DocsContentSection from "./DocsContentSection.svelte";
+  import DocsContent from "./DocsContent.svelte";
   import { getDocumentationIndex } from "../../../services/documentation";
   import { setDocsPageRoute } from "../../../services/routing";
 
@@ -17,19 +17,13 @@
   let showErrorOverlay = false;
   let packageData: PackageData;
   let indexData: DocsIndexData;
+  let activeDocs: ActiveDocs;
 
   if (params.package in documentation) {
     packageData = documentation[params.package];
     getDocumentationIndex(params.package)
       .then((data) => {
         indexData = data as DocsIndexData;
-
-        if (!params.version || !params.section || !params.entry) {
-          params.version ??= indexData.versions[0];
-          params.section ??= indexData.groups[0].name;
-          params.entry ??= indexData.groups[0].items[0];
-          setDocsPageRoute(params);
-        }
       })
       .catch(() => {
         showErrorOverlay = true;
@@ -39,6 +33,24 @@
       });
   } else {
     replace("/page-not-found");
+  }
+
+  $: {
+    if (indexData) {
+      activeDocs ??= {
+        version: params.version ?? indexData.versions[0],
+        group: params.group ?? indexData.groups[0].name,
+        item: params.item ?? indexData.groups[0].items[0],
+      };
+
+      if (
+        params.version !== activeDocs.version ||
+        params.group !== activeDocs.group ||
+        params.item !== activeDocs.item
+      ) {
+        setDocsPageRoute(params.package, activeDocs);
+      }
+    }
   }
 </script>
 
@@ -63,10 +75,10 @@
     <ContentArea>
       <SplitView centerV={false} rightFill={true}>
         <div slot="left">
-          <DocsIndex {indexData} bind:params />
+          <DocsIndex {indexData} bind:activeDocs />
         </div>
         <div slot="right">
-          <DocsContentSection bind:params />
+          <DocsContent bind:activeDocs />
         </div>
       </SplitView>
     </ContentArea>

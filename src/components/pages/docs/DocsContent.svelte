@@ -1,7 +1,7 @@
 <script lang="ts">
   import SectionHeader from "../../shared/SectionHeader.svelte";
 
-  export let params: DocsPageParams;
+  export let activeDocs: ActiveDocs;
   export let entry = undefined;
 </script>
 
@@ -11,8 +11,8 @@
     <p>Lorem ipsum or something.</p>
   {:else}
     <p class="w-100 text-center">
-      No documentation is available for "{params.section}/{params.entry}" in
-      version {params.version}
+      No documentation is available for "{activeDocs.group}/{activeDocs.item}"
+      in version {activeDocs.version}
     </p>
   {/if}
 </section>

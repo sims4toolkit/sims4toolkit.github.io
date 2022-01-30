@@ -28,7 +28,7 @@
     "/": HomePage,
     "/help": HelpPage,
     "/docs": DocsLandingPage,
-    "/docs/:package/:version?/:section?/:entry?": DocsPage,
+    "/docs/:package/:version?/:group?/:item?": DocsPage,
     "/desktop": DesktopPage,
     "*": NotFoundPage,
   };

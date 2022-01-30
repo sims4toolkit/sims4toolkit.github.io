@@ -7,11 +7,14 @@ interface PackageData {
   npmLink: string;
 }
 
-interface DocsPageParams {
-  package: string;
+interface ActiveDocs {
   version: string;
-  section: string;
-  entry: string;
+  group: string;
+  item: string;
+}
+
+interface DocsPageParams extends ActiveDocs {
+  package: string;
 }
 
 interface DocsIndexData {

@@ -1,30 +1,26 @@
 <script lang="ts">
-  import { setDocsPageRoute } from "../../../services/routing";
-
-  export let params: DocsPageParams;
   export let indexData: DocsIndexData;
+  export let activeDocs: ActiveDocs;
 
   let versionSelect: HTMLSelectElement;
 
   function onVersionChange() {
-    if (versionSelect.value !== params.version) {
-      params.version = versionSelect.value;
-      setDocsPageRoute(params);
+    if (versionSelect.value !== activeDocs.version) {
+      activeDocs.version = versionSelect.value;
     }
   }
 
   function isActive(section: string, entry: string) {
     return (
-      section.toLowerCase() === params.section.toLowerCase() &&
-      entry.toLowerCase() === params.entry.toLowerCase()
+      section.toLowerCase() === activeDocs.group.toLowerCase() &&
+      entry.toLowerCase() === activeDocs.item.toLowerCase()
     );
   }
 
-  function setActive(section: string, entry: string) {
-    if (section !== params.section || entry !== params.entry) {
-      params.section = section;
-      params.entry = entry;
-      setDocsPageRoute(params);
+  function setActive(group: string, item: string) {
+    if (group !== activeDocs.group || item !== activeDocs.item) {
+      activeDocs.group = group;
+      activeDocs.item = item;
     }
   }
 </script>
@@ -34,7 +30,7 @@
   <select
     name="version-select"
     id="version-select"
-    value={params.version}
+    value={activeDocs.version}
     bind:this={versionSelect}
     on:change={onVersionChange}
   >
