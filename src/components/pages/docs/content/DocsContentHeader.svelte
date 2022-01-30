@@ -13,7 +13,7 @@
         {/if}
         {header.title.name}
       </h1>
-      <div class="small-font">
+      <div class="smaller-font">
         {#if header.title.extends?.length}
           extends
           {#each header.title.extends as parent, key (key)}
@@ -34,7 +34,7 @@
   {/if}
   <p>{header.description}</p>
   {#if header.repoUrl}
-    <a class="small-font" href={header.repoUrl} target="_blank">
+    <a class="smaller-font" href={header.repoUrl} target="_blank">
       View Source Code
     </a>
   {/if}
@@ -53,10 +53,6 @@
           font-size: 0.8em;
         }
       }
-    }
-
-    .small-font {
-      font-size: 0.85em;
     }
   }
 </style>
