@@ -82,12 +82,12 @@ pre[class*="language-"] {
     &.tag,
     &.namespace,
     &.deleted {
-      color: #e2777a;
+      color: #e06c75;
     }
 
     &.function,
     &.function-name {
-      color: #54bfe0;
+      color: #66bad9;
     }
 
     &.boolean,
@@ -100,7 +100,7 @@ pre[class*="language-"] {
     &.class-name,
     &.constant,
     &.symbol {
-      color: #e9685f;
+      color: #e06c75;
     }
 
     &.selector,
@@ -116,7 +116,7 @@ pre[class*="language-"] {
     &.attr-value,
     &.regex,
     &.variable {
-      color: $sage;
+      color: #98c379;
     }
 
     &.operator,
@@ -126,7 +126,7 @@ pre[class*="language-"] {
     }
 
     &.inserted {
-      color: green;
+      color: #98c379;
     }
   }
 }
