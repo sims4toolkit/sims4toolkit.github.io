@@ -29,7 +29,7 @@ interface DocsContentData {
   imports?: string[];
   header: DocsHeader;
   sections: DocsSection[];
-  seeAlso?: DocsTypeReference[];
+  footer?: DocsFooter;
 }
 
 interface DocsHeader {
@@ -42,6 +42,10 @@ interface DocsHeader {
     implements?: DocsTypeReference[];
     generics?: DocsTypeGeneric[];
   }
+}
+
+interface DocsFooter {
+  seeAlso?: DocsTypeReference[];
 }
 
 interface DocsSection {
@@ -88,6 +92,7 @@ interface DocsSectionEnum extends DocsSectionContent {
 }
 
 interface DocsTypeReference {
+  // FIXME: this should be more general
   name: string;
   path?: string;
 }
