@@ -51,7 +51,7 @@
       {#each group.items as item, entryKey (entryKey)}
         <div
           class="entry"
-          class:active={isActive(group.name, item)}
+          class:active={isActive(group.name, item) && params}
           on:click={() => setActive(group.name, item)}
         >
           {item}
