@@ -3,11 +3,10 @@ import { replace } from "svelte-spa-router";
 /**
  * Sets the route to the docs page with the given params.
  * 
- * @param pkg Package for route
- * @param activeDocs Object with version, group, and item to use
+ * @param params Params to replace in route
  */
-export function setDocsPageRoute(pkg: string, { version, group, item }: ActiveDocs) {
+export function setDocsPageRoute(params: DocsPageParams) {
   replace(
-    `/docs/${pkg}/${version}/${group}/${item}`
+    `/docs/${params.package}/${params.version}/${params.group}/${params.item}`
   );
 }

@@ -26,9 +26,9 @@ export function getDocumentationIndex(packageName: string): Promise<DocsIndexDat
  * @param pkg Package to get docs for
  * @param activeDocs Object with version, group, and item to use
  */
-export function getDocumentation(pkg: string, { version, group, item }: ActiveDocs): Promise<any> {
+export function getDocumentation(params: DocsPageParams): Promise<any> {
   return new Promise((resolve, reject) => {
-    const url = `https://raw.githubusercontent.com/sims4toolkit/${pkg}/version/${version.replace(/\./g, "-")}/docs/${group}/${item}.json`;
+    const url = `https://raw.githubusercontent.com/sims4toolkit/${params.package}/version/${params.version.replace(/\./g, "-")}/docs/${params.group}/${params.item}.json`;
     
     fetch(url)
       .then((response) => response.json())

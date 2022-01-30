@@ -6,16 +6,15 @@
   import DocsContentSeparator from "./content/DocsContentSeparator.svelte";
   import DocsContentSection from "./content/DocsContentSection.svelte";
 
-  export let pkg: string;
-  export let activeDocs: ActiveDocs;
+  export let params: DocsPageParams;
 
   let docsData: DocsContentData;
   let isError = false;
 
   $: {
-    activeDocs;
+    params;
 
-    getDocumentation(pkg, activeDocs)
+    getDocumentation(params)
       .then((docs) => {
         docsData = docs;
         isError = false;
@@ -30,9 +29,9 @@
   {#if isError}
     <div class="docs-content-body">
       <p class="w-100">
-        Something went wrong while fetching the documentation for "{activeDocs.group}/{activeDocs.item}".
+        Something went wrong while fetching the documentation for "{params.group}/{params.item}".
         This is either due to this resource not existing in the selected version
-        ({activeDocs.version}), or an internal error.
+        ({params.version}), or an internal error.
       </p>
       <p class="w-100">
         Try switching to the latest version, and if you are still seeing this

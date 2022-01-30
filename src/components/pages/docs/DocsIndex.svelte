@@ -1,26 +1,31 @@
 <script lang="ts">
+  import { getContext } from "svelte";
+
   export let indexData: DocsIndexData;
-  export let activeDocs: ActiveDocs;
+  export let params: DocsPageParams;
 
   let versionSelect: HTMLSelectElement;
 
+  const context: any = getContext("docs");
+
   function onVersionChange() {
-    if (versionSelect.value !== activeDocs.version) {
-      activeDocs.version = versionSelect.value;
+    if (versionSelect.value !== params.version) {
+      context.requestNewDocs({ version: versionSelect.value });
     }
   }
 
-  function isActive(section: string, entry: string) {
+  function isActive(group: string, item: string) {
     return (
-      section.toLowerCase() === activeDocs.group.toLowerCase() &&
-      entry.toLowerCase() === activeDocs.item.toLowerCase()
+      group &&
+      item &&
+      group.toLowerCase() === params.group?.toLowerCase() &&
+      item.toLowerCase() === params.item?.toLowerCase()
     );
   }
 
   function setActive(group: string, item: string) {
-    if (group !== activeDocs.group || item !== activeDocs.item) {
-      activeDocs.group = group;
-      activeDocs.item = item;
+    if (group !== params.group || item !== params.item) {
+      context.requestNewDocs({ group, item });
     }
   }
 </script>
@@ -30,7 +35,7 @@
   <select
     name="version-select"
     id="version-select"
-    value={activeDocs.version}
+    value={params.version}
     bind:this={versionSelect}
     on:change={onVersionChange}
   >

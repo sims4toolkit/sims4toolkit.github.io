@@ -10,6 +10,7 @@
   import DocsContent from "./DocsContent.svelte";
   import { getDocumentationIndex } from "../../../services/documentation";
   import { setDocsPageRoute } from "../../../services/routing";
+  import { setContext } from "svelte";
 
   export let params: DocsPageParams;
 
@@ -17,13 +18,31 @@
   let showErrorOverlay = false;
   let packageData: PackageData;
   let indexData: DocsIndexData;
-  let activeDocs: ActiveDocs;
+
+  $: docsReady = indexData && params.version && params.group && params.item;
+
+  setContext("docs", {
+    requestNewDocs: (newParams: Partial<DocsPageParams>) => {
+      for (const paramName in newParams) {
+        params[paramName] = newParams[paramName];
+      }
+
+      setDocsPageRoute(params);
+    },
+  });
 
   if (params.package in documentation) {
     packageData = documentation[params.package];
     getDocumentationIndex(params.package)
       .then((data) => {
         indexData = data as DocsIndexData;
+
+        if (!params.version || !params.group || !params.item) {
+          params.version ??= indexData.versions[0];
+          params.group ??= indexData.groups[0].name;
+          params.item ??= indexData.groups[0].items[0];
+          setDocsPageRoute(params);
+        }
       })
       .catch(() => {
         showErrorOverlay = true;
@@ -33,24 +52,6 @@
       });
   } else {
     replace("/page-not-found");
-  }
-
-  $: {
-    if (indexData) {
-      activeDocs ??= {
-        version: params.version ?? indexData.versions[0],
-        group: params.group ?? indexData.groups[0].name,
-        item: params.item ?? indexData.groups[0].items[0],
-      };
-
-      if (
-        params.version !== activeDocs.version ||
-        params.group !== activeDocs.group ||
-        params.item !== activeDocs.item
-      ) {
-        setDocsPageRoute(params.package, activeDocs);
-      }
-    }
   }
 </script>
 
@@ -71,14 +72,14 @@
         </p>
       </div>
     </ContentArea>
-  {:else if indexData}
+  {:else if docsReady}
     <ContentArea>
       <SplitView centerV={false} rightFill={true}>
         <div slot="left">
-          <DocsIndex {indexData} bind:activeDocs />
+          <DocsIndex {indexData} bind:params />
         </div>
         <div slot="right">
-          <DocsContent pkg={params.package} bind:activeDocs />
+          <DocsContent bind:params />
         </div>
       </SplitView>
     </ContentArea>
