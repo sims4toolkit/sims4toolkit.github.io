@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CodeBlock from "../../../shared/CodeBlock.svelte";
   import DocTypeReferenceLink from "./DocTypeReferenceLink.svelte";
 
   export let functionData: DocsSectionFunction;
@@ -8,6 +9,11 @@
     type: DocsTypeReference;
     description?: string;
     optional?: boolean;
+  }
+
+  function getGenericsText(): string {
+    // FIXME: include extends param
+    return `<${functionData.generics.map((g) => g.name).join(", ")}>`;
   }
 
   function getArgumentsText(): string {
@@ -34,6 +40,9 @@
     {/if}
     {functionData.name}
     <span class="unbold">
+      {#if functionData.generics?.length}
+        {getGenericsText()}
+      {/if}
       {getArgumentsText()}
       {#if functionData.returnType}
         =&gt; <DocTypeReferenceLink typeRef={functionData.returnType} />
@@ -50,6 +59,10 @@
         <span class="arg-desc">– {arg.description}</span>
       </p>
     {/each}
+  {/if}
+  {#if functionData.exampleCode}
+    <p class="mini-title">example</p>
+    <CodeBlock useBgSecondary={true}>{functionData.exampleCode}</CodeBlock>
   {/if}
 </div>
 
