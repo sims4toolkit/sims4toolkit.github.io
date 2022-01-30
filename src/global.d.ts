@@ -54,11 +54,12 @@ interface DocsSection {
   content: DocsSectionContent[];
 }
 
-interface DocsSectionContent {
-  displayType: "property" | "function" | "enum";
-}
+type DocsSectionContent =
+  DocsSectionProperty |
+  DocsSectionFunction |
+  DocsSectionEnum;
 
-interface DocsSectionProperty extends DocsSectionContent {
+interface DocsSectionProperty {
   displayType: "property";
   prefix?: string;
   name: string;
@@ -67,7 +68,7 @@ interface DocsSectionProperty extends DocsSectionContent {
   optional?: boolean;
 }
 
-interface DocsSectionFunction extends DocsSectionContent {
+interface DocsSectionFunction {
   displayType: "function";
   prefix?: string;
   name: string;
@@ -83,7 +84,7 @@ interface DocsSectionFunction extends DocsSectionContent {
   exampleCode?: string;
 }
 
-interface DocsSectionEnum extends DocsSectionContent {
+interface DocsSectionEnum {
   displayType: "enum";
   values: {
     key: string;
