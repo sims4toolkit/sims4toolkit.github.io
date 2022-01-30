@@ -28,9 +28,8 @@ export function getDocumentationIndex(packageName: string): Promise<DocsIndexDat
  */
 export function getDocumentation(pkg: string, { version, group, item }: ActiveDocs): Promise<any> {
   return new Promise((resolve, reject) => {
-    console.log("Getting docs"); // FIXME: delete
-    const url = `https://github.com/sims4toolkit/${pkg}/blob/version/${version.replace('.', '-')}/docs/${group}/${item}.json`;
-
+    const url = `https://raw.githubusercontent.com/sims4toolkit/${pkg}/version/${version.replace(/\./g, "-")}/docs/${group}/${item}.json`;
+    
     fetch(url)
       .then((response) => response.json())
       .then((jsonData) => {

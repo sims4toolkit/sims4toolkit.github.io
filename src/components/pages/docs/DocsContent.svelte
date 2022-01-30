@@ -15,7 +15,7 @@
     getDocumentation(pkg, activeDocs)
       .then((docs) => {
         docsData = docs;
-        isError = false; // FIXME: needed?
+        isError = false;
       })
       .catch(() => {
         isError = true;
