@@ -4,6 +4,7 @@
   import DocsContentHeader from "./content/DocsContentHeader.svelte";
   import DocsContentImports from "./content/DocsContentImports.svelte";
   import DocsContentSeparator from "./content/DocsContentSeparator.svelte";
+  import DocsContentSection from "./content/DocsContentSection.svelte";
 
   export let pkg: string;
   export let activeDocs: ActiveDocs;
@@ -45,7 +46,10 @@
     {/if}
     <div class="docs-content-body">
       <DocsContentHeader header={docsData.header} />
-      <DocsContentSeparator />
+      {#each docsData.sections as section, key (key)}
+        <DocsContentSeparator />
+        <DocsContentSection {section} />
+      {/each}
     </div>
   {:else}
     <div class="docs-content-body">

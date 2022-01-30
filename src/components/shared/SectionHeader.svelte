@@ -1,10 +1,11 @@
 <script lang="ts">
   export let nowrap: boolean = false;
+  export let noTopMargin: boolean = false;
   export let title: string;
 </script>
 
 <div class="section-header">
-  <h3 class:nowrap>{title}</h3>
+  <h3 class:nowrap class:remove-margin={noTopMargin}>{title}</h3>
   <hr />
 </div>
 
@@ -15,6 +16,10 @@
 
     h3 {
       margin-bottom: 0.35em;
+
+      &.remove-margin {
+        margin-top: 0;
+      }
     }
 
     hr {
