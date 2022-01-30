@@ -14,13 +14,8 @@
 <style lang="scss">
   .prism-wrapper {
     background-color: var(--color-card);
-    border-radius: 1em;
+    border-radius: 8px;
     padding: 0 0.5em;
-  }
-
-  @media only screen and (max-width: 768px) {
-    .prism-wrapper {
-      overflow-x: auto;
-    }
+    overflow-x: auto;
   }
 </style>

@@ -45,9 +45,10 @@
     .header-title {
       h1 {
         margin-top: 0;
-        margin-bottom: 0.2em;
+        margin-bottom: 0;
 
         span.prefix {
+          margin-top: 1em;
           font-weight: normal;
           font-size: 0.8em;
         }
