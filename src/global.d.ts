@@ -93,9 +93,12 @@ interface DocsSectionEnum {
 }
 
 interface DocsTypeReference {
-  // FIXME: this should be more general
   name: string;
-  path?: string;
+  path?: {
+    package: string;
+    group: string;
+    item: string;
+  }
 }
 
 interface DocsTypeGeneric {

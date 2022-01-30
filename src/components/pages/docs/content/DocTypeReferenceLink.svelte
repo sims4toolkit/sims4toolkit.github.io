@@ -5,7 +5,7 @@
 </script>
 
 {#if typeRef.path}
-  <a href={typeRef.path} use:link>{typeRef.name}</a>
+  <a href="/" use:link>{typeRef.name}</a>
 {:else}
   {typeRef.name}
 {/if}
