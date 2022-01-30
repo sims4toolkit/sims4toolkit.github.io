@@ -3,6 +3,13 @@
 
   export let functionData: DocsSectionFunction;
 
+  interface Argument {
+    name: string;
+    type: DocsTypeReference;
+    description?: string;
+    optional?: boolean;
+  }
+
   function getArgumentsText(): string {
     if (functionData.arguments?.length) {
       const argNames = functionData.arguments.map((arg) => {
@@ -13,6 +20,10 @@
     } else {
       return "()";
     }
+  }
+
+  function formatArgumentName(arg: Argument): string {
+    return `${arg.name}${arg.optional ? "?" : ""}:`;
   }
 </script>
 
@@ -29,7 +40,17 @@
       {/if}
     </span>
   </h4>
-  <p>{functionData.description}</p>
+  <p class="mb-0">{functionData.description}</p>
+  {#if functionData.arguments?.length}
+    <p class="mini-title">arguments</p>
+    {#each functionData.arguments as arg, key (key)}
+      <p class="mb-0">
+        {formatArgumentName(arg)}
+        <DocTypeReferenceLink typeRef={arg.type} />
+        <span class="arg-desc">– {arg.description}</span>
+      </p>
+    {/each}
+  {/if}
 </div>
 
 <style lang="scss">
@@ -44,6 +65,18 @@
       .unbold {
         font-weight: normal;
       }
+    }
+
+    .mini-title {
+      text-transform: uppercase;
+      font-size: 0.8em;
+      font-weight: bold;
+      opacity: 0.5;
+      margin-top: 2em;
+    }
+
+    .arg-desc {
+      opacity: 0.5;
     }
   }
 </style>
