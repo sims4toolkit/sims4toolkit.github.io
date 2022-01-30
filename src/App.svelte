@@ -34,7 +34,7 @@
   };
 
   window.addEventListener("hashchange", function (event) {
-    if (!(event.oldURL.includes("/docs/") && event.newURL.includes("/docs/"))) {
+    if (event.oldURL || event.newURL) {
       window.scrollTo(0, 0);
     }
   });

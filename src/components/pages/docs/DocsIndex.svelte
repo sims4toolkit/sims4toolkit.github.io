@@ -5,7 +5,6 @@
   export let indexData: DocsIndexData;
 
   let versionSelect: HTMLSelectElement;
-  let versions: string[] = ["0.1.1", "0.1.0"]; // FIXME: get from indexData
 
   function onVersionChange() {
     if (versionSelect.value !== params.version) {
@@ -39,22 +38,22 @@
     bind:this={versionSelect}
     on:change={onVersionChange}
   >
-    {#each versions as version, versionKey (versionKey)}
+    {#each indexData.versions as version, versionKey (versionKey)}
       <option value={version}>
         {version}
       </option>
     {/each}
   </select>
-  {#each indexData as section, sectionKey (sectionKey)}
+  {#each indexData.groups as group, sectionKey (sectionKey)}
     <div class="docs-index-section">
-      <h6>{section.title}</h6>
-      {#each section.entries as entry, entryKey (entryKey)}
+      <h6>{group.name}</h6>
+      {#each group.items as item, entryKey (entryKey)}
         <div
           class="entry"
-          class:active={isActive(section.title, entry)}
-          on:click={() => setActive(section.title, entry)}
+          class:active={isActive(group.name, item)}
+          on:click={() => setActive(group.name, item)}
         >
-          {entry}
+          {item}
         </div>
       {/each}
     </div>

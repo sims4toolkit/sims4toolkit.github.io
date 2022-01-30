@@ -18,29 +18,27 @@
   let packageData: PackageData;
   let indexData: DocsIndexData;
 
-  $: {
-    if (params.package in documentation) {
-      if (!params.version || !params.section || !params.entry) {
-        params.version ??= "0.1.0"; // FIXME: get latest
-        params.section ??= "packages"; // FIXME: get first section
-        params.entry ??= "package"; // FIXME: get first entry
-        setDocsPageRoute(params);
-      }
+  if (params.package in documentation) {
+    packageData = documentation[params.package];
+    getDocumentationIndex(params.package)
+      .then((data) => {
+        indexData = data as DocsIndexData;
 
-      packageData = documentation[params.package];
-      getDocumentationIndex(params.package)
-        .then((data) => {
-          indexData = data as DocsIndexData;
-        })
-        .catch(() => {
-          showErrorOverlay = true;
-          setTimeout(() => {
-            isError = true;
-          }, 200);
-        });
-    } else {
-      replace("/page-not-found");
-    }
+        if (!params.version || !params.section || !params.entry) {
+          params.version ??= indexData.versions[0];
+          params.section ??= indexData.groups[0].name;
+          params.entry ??= indexData.groups[0].items[0];
+          setDocsPageRoute(params);
+        }
+      })
+      .catch(() => {
+        showErrorOverlay = true;
+        setTimeout(() => {
+          isError = true;
+        }, 200);
+      });
+  } else {
+    replace("/page-not-found");
   }
 </script>
 

@@ -5,7 +5,6 @@ interface PackageData {
   repoLink: string;
   npmName: string;
   npmLink: string;
-  indexLink: string;
 }
 
 interface DocsPageParams {
@@ -18,7 +17,7 @@ interface DocsPageParams {
 interface DocsIndexData {
   versions: string[];
   groups: {
-    group: string;
+    name: string;
     items: string[];
   }[];
 };
