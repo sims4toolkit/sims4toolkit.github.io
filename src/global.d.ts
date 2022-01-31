@@ -65,6 +65,14 @@ interface DocsSectionProperty {
   optional?: boolean;
 }
 
+interface DocsFunctionArguments {
+  name: string;
+  type: DocsTypeReference;
+  description?: string;
+  optional?: boolean;
+  properties?: DocsFunctionArguments[];
+}
+
 interface DocsSectionFunction {
   displayType: "function";
   prefix?: string;
@@ -72,12 +80,7 @@ interface DocsSectionFunction {
   description?: string;
   generics?: DocsTypeGeneric[];
   returnType?: DocsTypeReference;
-  arguments?: {
-    name: string;
-    type: DocsTypeReference;
-    description?: string;
-    optional?: boolean;
-  }[];
+  arguments?: DocsFunctionArguments[];
   examples?: {
     lang?: string;
     code: string;
