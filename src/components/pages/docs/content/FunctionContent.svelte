@@ -38,14 +38,15 @@
     {#if functionData.prefix}
       <span class="smaller-font">{functionData.prefix}</span>
     {/if}
-    {functionData.name}
+    <code>{functionData.name}</code>
     <span class="unbold">
       {#if functionData.generics?.length}
-        {getGenericsText()}
+        <code>{getGenericsText()}</code>
       {/if}
-      {getArgumentsText()}
+      <code>{getArgumentsText()}</code>
       {#if functionData.returnType}
-        =&gt; <DocTypeReferenceLink typeRef={functionData.returnType} />
+        <code>=&gt;</code>
+        <DocTypeReferenceLink typeRef={functionData.returnType} />
       {/if}
     </span>
   </h4>
@@ -54,7 +55,7 @@
     <p class="mini-title">arguments</p>
     {#each functionData.arguments as arg, argKey (argKey)}
       <p class="mb-0">
-        {formatArgumentName(arg)}
+        <code>{formatArgumentName(arg)}</code>
         <DocTypeReferenceLink typeRef={arg.type} />
         <span class="arg-desc">– {arg.description}</span>
       </p>
@@ -62,7 +63,7 @@
         <div class="arg-properties-container">
           {#each arg.properties as prop, propKey (propKey)}
             <p class="mb-0">
-              {formatArgumentName(prop)}
+              <code>{formatArgumentName(prop)}</code>
               <DocTypeReferenceLink typeRef={prop.type} />
               <span class="arg-desc">– {prop.description}</span>
             </p>

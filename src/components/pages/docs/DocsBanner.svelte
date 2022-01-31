@@ -53,10 +53,6 @@
       border-radius: 0.35em;
       margin-top: 1.5em;
 
-      code {
-        font-size: 1.4em;
-      }
-
       img {
         margin-left: 1em;
       }
