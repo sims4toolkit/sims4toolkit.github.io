@@ -1,13 +1,17 @@
 <script lang="ts">
   import { getContext } from "svelte";
+  import { link } from "svelte-spa-router";
 
   export let typeRef: DocsTypeReference;
 
   const context: any = getContext("docs");
 
-  function goToType() {
+  function getUrlToExternalRef(): string {
+    return `/docs/${typeRef.path.pkg}/latest/${typeRef.path.group}/${typeRef.path.item}`;
+  }
+
+  function goToRefInSamePackage() {
     context.requestNewDocs({
-      package: typeRef.path.pkg,
       group: typeRef.path.group,
       item: typeRef.path.item,
     });
@@ -15,7 +19,11 @@
 </script>
 
 {#if typeRef.path}
-  <span class="type-ref" on:click={goToType}>{typeRef.name}</span>
+  {#if typeRef.path.pkg === context.currentPackage}
+    <span class="type-ref" on:click={goToRefInSamePackage}>{typeRef.name}</span>
+  {:else}
+    <a href={getUrlToExternalRef()} use:link>{typeRef.name}</a>
+  {/if}
 {:else}
   {typeRef.name}
 {/if}

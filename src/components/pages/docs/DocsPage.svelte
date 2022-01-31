@@ -22,6 +22,7 @@
   $: docsReady = indexData && params.version && params.group && params.item;
 
   setContext("docs", {
+    currentPackage: params.package,
     requestNewDocs: (newParams: Partial<DocsPageParams>) => {
       for (const paramName in newParams) {
         params[paramName] = newParams[paramName];
@@ -31,27 +32,37 @@
     },
   });
 
-  if (params.package in documentation) {
-    packageData = documentation[params.package];
-    getDocumentationIndex(params.package)
-      .then((data) => {
-        indexData = data as DocsIndexData;
+  async function loadIndex() {
+    if (params.package in documentation) {
+      packageData = documentation[params.package];
+      getDocumentationIndex(params.package)
+        .then((data) => {
+          indexData = data as DocsIndexData;
 
-        if (!params.version || !params.group || !params.item) {
-          params.version ??= indexData.versions[0];
-          params.group ??= indexData.groups[0].name;
-          params.item ??= indexData.groups[0].items[0];
-          setDocsPageRoute(params);
-        }
-      })
-      .catch(() => {
-        showErrorOverlay = true;
-        setTimeout(() => {
-          isError = true;
-        }, 200);
-      });
-  } else {
-    replace("/page-not-found");
+          const getLatestVersion = params.version === "latest";
+
+          if (!params.version || !params.group || !params.item) {
+            if (getLatestVersion || !params.version)
+              params.version = indexData.versions[0];
+            params.group ??= indexData.groups[0].name;
+            params.item ??= indexData.groups[0].items[0];
+            setDocsPageRoute(params);
+          }
+        })
+        .catch(() => {
+          showErrorOverlay = true;
+          setTimeout(() => {
+            isError = true;
+          }, 200);
+        });
+    } else {
+      replace("/page-not-found");
+    }
+  }
+
+  $: {
+    params.package;
+    loadIndex();
   }
 </script>
 

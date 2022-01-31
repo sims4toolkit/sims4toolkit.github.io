@@ -17,6 +17,12 @@
     "npmLink": "https://npmjs.com/package/@s4tk/models",
     "npmName": "@s4tk/models"
   },
+  "tunables": {
+    "description": "Convenience functions for tunable nodes.",
+    "repoLink": "https://github.com/sims4toolkit/tunables",
+    "npmLink": "https://npmjs.com/package/@s4tk/tunables",
+    "npmName": "@s4tk/tunables"
+  },
   "xml-dom": {
     "description": "Models for XML, tailored for tuning.",
     "repoLink": "https://github.com/sims4toolkit/xml-dom",
