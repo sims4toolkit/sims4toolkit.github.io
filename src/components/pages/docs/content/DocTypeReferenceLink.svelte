@@ -11,7 +11,7 @@
   }
 
   function goToRefInSamePackage({ group, item }) {
-    context.requestNewDocs(group, item);
+    context.requestNewDocs({ group, item });
   }
 </script>
 

@@ -55,7 +55,8 @@
             setDocsPageRoute(params);
           }
         })
-        .catch(() => {
+        .catch((msg) => {
+          console.warn(msg);
           showErrorOverlay = true;
           setTimeout(() => {
             isError = true;

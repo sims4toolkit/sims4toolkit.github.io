@@ -14,7 +14,7 @@ export function getDocumentationIndex(packageName: string): Promise<DocsIndexDat
         resolve(jsonData);
       })
       .catch((err) => {
-        reject(err);
+        reject("Index could not be found. Are you sure it exists in the main branch's 'docs' folder?");
       });
   });
 }
@@ -28,6 +28,11 @@ export function getDocumentationIndex(packageName: string): Promise<DocsIndexDat
  */
 export function getDocumentation(params: DocsPageParams): Promise<any> {
   return new Promise((resolve, reject) => {
+    if (params.version === "latest") {
+      reject("Latest version must be specified. It can be found in the docs index.");
+      return;
+    }
+
     const url = `https://raw.githubusercontent.com/sims4toolkit/${params.package}/version/${params.version.replace(/\./g, "-")}/docs/${params.group}/${params.item}.json`;
     
     fetch(url)

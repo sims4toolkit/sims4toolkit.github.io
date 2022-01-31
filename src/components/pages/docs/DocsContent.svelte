@@ -20,8 +20,9 @@
         docsData = docs;
         isError = false;
       })
-      .catch(() => {
+      .catch((msg) => {
         isError = true;
+        console.warn(msg);
       });
   }
 </script>
