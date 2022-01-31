@@ -6,23 +6,22 @@
 
   const context: any = getContext("docs");
 
-  function getUrlToExternalRef(): string {
-    return `/docs/${typeRef.path.pkg}/latest/${typeRef.path.group}/${typeRef.path.item}`;
+  function getUrlToExternalRef({ pkg, group, item }): string {
+    return `/docs/${pkg}/latest/${group}/${item}`;
   }
 
-  function goToRefInSamePackage() {
-    context.requestNewDocs({
-      group: typeRef.path.group,
-      item: typeRef.path.item,
-    });
+  function goToRefInSamePackage({ group, item }) {
+    context.requestNewDocs(group, item);
   }
 </script>
 
 {#if typeRef.path}
   {#if typeRef.path.pkg === context.currentPackage}
-    <span class="type-ref" on:click={goToRefInSamePackage}>{typeRef.name}</span>
+    <span class="type-ref" on:click={() => goToRefInSamePackage(typeRef.path)}>
+      {typeRef.name}
+    </span>
   {:else}
-    <a href={getUrlToExternalRef()} use:link>{typeRef.name}</a>
+    <a href={getUrlToExternalRef(typeRef.path)} use:link>{typeRef.name}</a>
   {/if}
 {:else}
   {typeRef.name}

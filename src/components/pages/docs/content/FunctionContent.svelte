@@ -11,21 +11,17 @@
     optional?: boolean;
   }
 
-  function getGenericsText(): string {
+  function getGenericsText(gens: DocsTypeGeneric[]): string {
     // FIXME: include extends param
-    return `<${functionData.generics.map((g) => g.name).join(", ")}>`;
+    return `<${gens.map((g) => g.name).join(", ")}>`;
   }
 
-  function getArgumentsText(): string {
-    if (functionData.arguments?.length) {
-      const argNames = functionData.arguments.map((arg) => {
-        return arg.name + (arg.optional ? "?" : "");
-      });
+  function getArgumentsText(args: DocsFunctionArguments[]): string {
+    const argNames = args.map((arg) => {
+      return arg.name + (arg.optional ? "?" : "");
+    });
 
-      return `(${argNames.join(", ")})`;
-    } else {
-      return "()";
-    }
+    return `(${argNames.join(", ")})`;
   }
 
   function formatArgumentName(arg: Argument): string {
@@ -41,9 +37,13 @@
     <code>{functionData.name}</code>
     <span class="unbold">
       {#if functionData.generics?.length}
-        <code>{getGenericsText()}</code>
+        <code>{getGenericsText(functionData.generics)}</code>
       {/if}
-      <code>{getArgumentsText()}</code>
+      {#if functionData.arguments?.length}
+        <code>{getArgumentsText(functionData.arguments)}</code>
+      {:else}
+        <code>()</code>
+      {/if}
       {#if functionData.returnType}
         <code>=&gt;</code>
         <DocTypeReferenceLink typeRef={functionData.returnType} />
