@@ -4,9 +4,14 @@
 
   export let language = "javascript";
   export let useBgSecondary = false;
+  export let useDropShadow = true;
 </script>
 
-<div class="prism-wrapper drop-shadow" class:bg-secondary={useBgSecondary}>
+<div
+  class="prism-wrapper"
+  class:drop-shadow={useDropShadow}
+  class:bg-secondary={useBgSecondary}
+>
   <Prism {language}>
     <slot />
   </Prism>

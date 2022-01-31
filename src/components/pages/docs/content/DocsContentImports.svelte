@@ -5,7 +5,7 @@
 </script>
 
 <div class="docs-imports">
-  <CodeBlock>
+  <CodeBlock useBgSecondary={true} useDropShadow={false}>
     {#each imports as imp, key (key)}
       {`${key === 0 ? "" : "\n"}${imp}`}
     {/each}

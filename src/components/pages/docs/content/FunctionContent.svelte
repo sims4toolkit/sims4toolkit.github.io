@@ -62,11 +62,13 @@
   {/if}
   {#if functionData.examples?.length}
     <p class="mini-title">example</p>
-    {#each functionData.examples as example, key (key)}
-      <CodeBlock language={example.lang ?? "js"} useBgSecondary={true}>
-        {example.code}
-      </CodeBlock>
-    {/each}
+    <div class="examples-container">
+      {#each functionData.examples as example, key (key)}
+        <CodeBlock language={example.lang ?? "js"} useBgSecondary={true}>
+          {example.code}
+        </CodeBlock>
+      {/each}
+    </div>
   {/if}
 </div>
 
@@ -94,6 +96,12 @@
 
     .arg-desc {
       opacity: 0.5;
+    }
+
+    .examples-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
     }
   }
 </style>
