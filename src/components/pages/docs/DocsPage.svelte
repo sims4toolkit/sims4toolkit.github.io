@@ -21,15 +21,17 @@
 
   $: docsReady = indexData && params.version && params.group && params.item;
 
+  async function requestNewDocs(newParams: Partial<DocsPageParams>) {
+    for (const paramName in newParams) {
+      params[paramName] = newParams[paramName];
+    }
+
+    setDocsPageRoute(params);
+  }
+
   setContext("docs", {
     currentPackage: params.package,
-    requestNewDocs: (newParams: Partial<DocsPageParams>) => {
-      for (const paramName in newParams) {
-        params[paramName] = newParams[paramName];
-      }
-
-      setDocsPageRoute(params);
-    },
+    requestNewDocs,
   });
 
   async function loadIndex() {
@@ -39,11 +41,15 @@
         .then((data) => {
           indexData = data as DocsIndexData;
 
-          const getLatestVersion = params.version === "latest";
+          const getLatest = params.version === "latest";
 
-          if (!params.version || !params.group || !params.item) {
-            if (getLatestVersion || !params.version)
+          if (getLatest || !params.version || !params.group || !params.item) {
+            if (getLatest) {
               params.version = indexData.versions[0];
+            } else {
+              params.version ??= indexData.versions[0];
+            }
+
             params.group ??= indexData.groups[0].name;
             params.item ??= indexData.groups[0].items[0];
             setDocsPageRoute(params);

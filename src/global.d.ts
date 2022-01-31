@@ -69,9 +69,9 @@ interface DocsSectionFunction {
   displayType: "function";
   prefix?: string;
   name: string;
+  description?: string;
   generics?: DocsTypeGeneric[];
   returnType?: DocsTypeReference;
-  description?: string;
   arguments?: {
     name: string;
     type: DocsTypeReference;
