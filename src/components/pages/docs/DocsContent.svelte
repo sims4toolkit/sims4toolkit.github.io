@@ -5,6 +5,7 @@
   import DocsContentImports from "./content/DocsContentImports.svelte";
   import DocsContentSeparator from "./content/DocsContentSeparator.svelte";
   import DocsContentSection from "./content/DocsContentSection.svelte";
+  import DocsContentFooter from "./content/DocsContentFooter.svelte";
 
   export let params: DocsPageParams;
 
@@ -49,6 +50,9 @@
         <DocsContentSeparator />
         <DocsContentSection {section} />
       {/each}
+      {#if docsData.footer}
+        <DocsContentFooter footer={docsData.footer} />
+      {/if}
     </div>
   {:else}
     <div class="docs-content-body">

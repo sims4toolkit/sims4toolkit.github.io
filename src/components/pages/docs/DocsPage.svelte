@@ -81,6 +81,7 @@
           For the time being, feel free to browse the project
           <a href={packageData.repoLink} target="_blank">on GitHub</a>.
         </p>
+        <p class="disclaimer">Error 404</p>
       </div>
     </ContentArea>
   {:else if docsReady}
