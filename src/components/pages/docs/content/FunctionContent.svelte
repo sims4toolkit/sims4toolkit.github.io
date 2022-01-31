@@ -52,12 +52,23 @@
   <p class="mb-0">{functionData.description}</p>
   {#if functionData.arguments?.length}
     <p class="mini-title">arguments</p>
-    {#each functionData.arguments as arg, key (key)}
+    {#each functionData.arguments as arg, argKey (argKey)}
       <p class="mb-0">
         {formatArgumentName(arg)}
         <DocTypeReferenceLink typeRef={arg.type} />
         <span class="arg-desc">– {arg.description}</span>
       </p>
+      {#if arg.properties?.length}
+        <div class="arg-properties-container">
+          {#each arg.properties as prop, propKey (propKey)}
+            <p class="mb-0">
+              {formatArgumentName(prop)}
+              <DocTypeReferenceLink typeRef={prop.type} />
+              <span class="arg-desc">– {prop.description}</span>
+            </p>
+          {/each}
+        </div>
+      {/if}
     {/each}
   {/if}
   {#if functionData.examples?.length}
@@ -92,6 +103,11 @@
       font-weight: bold;
       opacity: 0.5;
       margin-top: 2em;
+    }
+
+    .arg-properties-container {
+      border-left: 1px solid var(--color-text);
+      padding-left: 1em;
     }
 
     .arg-desc {
