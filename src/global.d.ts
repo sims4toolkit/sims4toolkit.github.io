@@ -78,7 +78,10 @@ interface DocsSectionFunction {
     description?: string;
     optional?: boolean;
   }[];
-  exampleCode?: string;
+  examples?: {
+    lang?: string;
+    code: string;
+  }[];
 }
 
 interface DocsSectionEnum {

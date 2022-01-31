@@ -60,9 +60,13 @@
       </p>
     {/each}
   {/if}
-  {#if functionData.exampleCode}
+  {#if functionData.examples?.length}
     <p class="mini-title">example</p>
-    <CodeBlock useBgSecondary={true}>{functionData.exampleCode}</CodeBlock>
+    {#each functionData.examples as example, key (key)}
+      <CodeBlock language={example.lang ?? "js"} useBgSecondary={true}>
+        {example.code}
+      </CodeBlock>
+    {/each}
   {/if}
 </div>
 
