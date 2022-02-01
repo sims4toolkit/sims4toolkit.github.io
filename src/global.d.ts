@@ -54,7 +54,8 @@ interface DocsSection {
 type DocsSectionContent =
   DocsSectionProperty |
   DocsSectionFunction |
-  DocsSectionEnum;
+  DocsSectionEnum |
+  DocsSectionGeneral;
 
 interface DocsSectionProperty {
   displayType: "property";
@@ -93,6 +94,11 @@ interface DocsSectionEnum {
     key: string;
     value: string;
   }[];
+}
+
+interface DocsSectionGeneral {
+  displayType: "general";
+  paragraphs: string[];
 }
 
 interface DocsTypeReference {
