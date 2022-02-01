@@ -3,7 +3,8 @@ $dark-gray: #2f343e;
 $darker-gray: #282c34;
 $darkest-gray: #1a1c20;
 $sage: #98c379;
-$seafoam: #62c3a9;
+$seafoam: #70cfb6;
+$teal: #18ac87;
 $sky-blue: #49c6e6;
 $azure-blue: #0095eb;
 
@@ -52,7 +53,7 @@ $azure-blue: #0095eb;
     --color-bg: #{$cool-white};
     --color-bg-secondary: #e5e6ea;
     --color-text: #{$darker-gray};
-    --color-accent: #{darken($seafoam, 10)};
+    --color-accent: #{$teal};
     --color-accent-secondary: #{$azure-blue};
     --color-card: #dde1e6;
     --color-card-secondary: #e5e6ea;

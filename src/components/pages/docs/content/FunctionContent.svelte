@@ -32,9 +32,9 @@
 <div class="docs-content-function">
   <h4>
     {#if functionData.prefix}
-      <span class="smaller-font">{functionData.prefix}</span>
+      <span class="smaller-font unbold">{functionData.prefix}</span>
     {/if}
-    <code>{functionData.name}</code>
+    <code class="accent-color">{functionData.name}</code>
     <span class="unbold">
       {#if functionData.generics?.length}
         <code>{getGenericsText(functionData.generics)}</code>
@@ -92,10 +92,6 @@
 
     h4 {
       margin: 0;
-
-      .unbold {
-        font-weight: normal;
-      }
     }
 
     .mini-title {

@@ -1,9 +1,23 @@
 <script lang="ts">
+  import DocTypeReferenceLink from "./DocTypeReferenceLink.svelte";
+
   export let propertyData: DocsSectionProperty;
 </script>
 
 <div class="docs-content-property">
-  {propertyData.displayType}
+  <h4>
+    {#if propertyData.prefix}
+      <span class="smaller-font unbold">{propertyData.prefix}</span>
+    {/if}
+    <code class="accent-color">{propertyData.name}</code>
+    <span class="unbold">
+      {#if propertyData.type}
+        :
+        <DocTypeReferenceLink typeRef={propertyData.type} />
+      {/if}
+    </span>
+  </h4>
+  <p class="mb-0">{propertyData.description}</p>
 </div>
 
 <style lang="scss">
@@ -11,5 +25,9 @@
     padding: 20px;
     border-radius: 8px;
     background-color: var(--color-card);
+
+    h4 {
+      margin: 0;
+    }
   }
 </style>
