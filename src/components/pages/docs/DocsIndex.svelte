@@ -73,7 +73,7 @@
     }
 
     .docs-index-section {
-      border-left: 1px solid var(--color-text);
+      border-left: 1px solid var(--color-divider);
       padding-left: 0.5em;
       min-width: 200px;
 

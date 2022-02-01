@@ -72,6 +72,7 @@
       {/if}
     {/each}
   {/if}
+  <!-- NOTE: examples break unless docs are deleted -->
   {#if functionData.examples?.length}
     <p class="mini-title">example</p>
     <div class="examples-container">

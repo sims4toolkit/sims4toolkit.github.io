@@ -24,6 +24,7 @@
     if (!(lastParams && compare(params, lastParams))) {
       isError = false;
       lastParams = clone(params);
+      docsData = undefined; // issue with imports and examples if this isn't here
       loadDocsContent();
     }
   }
@@ -33,7 +34,6 @@
       .requestContent(params)
       .then((content) => {
         docsData = content;
-        isError = false;
       })
       .catch((msg) => {
         console.warn(msg);
@@ -57,6 +57,7 @@
       <p class="disclaimer">Error 404</p>
     </div>
   {:else if docsData}
+    <!-- NOTE: imports break unless docs are deleted -->
     {#if docsData.imports?.length}
       <DocsContentImports imports={docsData.imports} />
     {/if}
