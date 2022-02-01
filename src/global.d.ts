@@ -31,7 +31,7 @@ interface DocsContentData {
 
 interface DocsHeader {
   description: string;
-  repoUrl?: string;
+  sourceCode?: string;
   title?: {
     prefix?: string;
     name: string;

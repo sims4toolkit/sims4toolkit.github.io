@@ -43,6 +43,11 @@
     inPackage(pkg: string) {
       return params.package === pkg;
     },
+    getRepoBaseForVersion(): string {
+      const pkg = params.package;
+      const version = params.version.replace(/\./g, "-");
+      return `https://github.com/sims4toolkit/${pkg}/blob/version/${version}`;
+    },
     async scrollToTop() {
       try {
         const bodyPos =

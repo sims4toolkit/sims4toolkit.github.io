@@ -1,7 +1,14 @@
 <script lang="ts">
+  import { getContext } from "svelte";
   import DocTypeReferenceLink from "./DocTypeReferenceLink.svelte";
 
   export let header: DocsHeader;
+
+  const context: any = getContext("docs");
+
+  function getSourceCodeHref(location: string): string {
+    return `${context.getRepoBaseForVersion()}/${location}`;
+  }
 </script>
 
 <div class="docs-header">
@@ -33,8 +40,12 @@
     </div>
   {/if}
   <p>{header.description}</p>
-  {#if header.repoUrl}
-    <a class="smaller-font" href={header.repoUrl} target="_blank">
+  {#if header.sourceCode}
+    <a
+      class="smaller-font"
+      href={getSourceCodeHref(header.sourceCode)}
+      target="_blank"
+    >
       View Source Code
     </a>
   {/if}
