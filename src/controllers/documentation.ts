@@ -1,77 +1,118 @@
-import { replace } from "svelte-spa-router";
 import documentationData from "../data/documentation.json";
 
-interface DocumentationResponse {
-  isRedirect: boolean;
-  index?: DocsIndexData;
-  content?: DocsContentData; 
-}
-
+/**
+ * Handles fetching of documentation indices and content.
+ */
 export default class DocumentationController {
   private _params: Partial<DocsPageParams>;
   private _index?: DocsIndexData;
   private _content?: DocsContentData;
 
   constructor() {
-    this._params = {};
+    // just so keys exist
+    this._params = {
+      package: undefined,
+      version: undefined,
+      group: undefined,
+      item: undefined
+    };
   }
 
-  async requestDocumentation(params: Partial<DocsPageParams>): Promise<DocumentationResponse> {
+  /**
+   * Returns the index for the package with the given name. Request is rejected
+   * if the package isn't registered (i.e. in the "documentation.json" file) or
+   * if the main branch of its repo does not have a file called "index.json" in
+   * a "docs" folder at the highest level.
+   * 
+   * @param packageName Name of package to get index for
+   */
+  requestIndex(packageName: string): Promise<DocsIndexData> {
     return new Promise(async (resolve, reject) => {
-      // if docs exist, return them
-      if (this._alreadyHasDocs(params)) {
-        return resolve({
-          isRedirect: false,
-          index: this._index,
-          content: this._content
-        });
+      if (!(packageName in documentationData)) {
+        this._reset();
+        return reject(`Package "${packageName}" is not registered.`);
       }
 
-      // ensure package exists
-      if (!(params.package && (params.package in documentationData))) {
-        return reject(`Could not identify package "${params.package}".`);
-      }
+      if (!(this._index && (packageName === this._params.package))) {
+        this._params.package = packageName;
 
-      // ensure index exists for package
-      if ((!this._index) || (params.package !== this._params.package)) {
         try {
-          this._params.package = params.package;
-          this._index = await this._fetchIndex();
+          this._index = await DocumentationController._fetchIndex(packageName);
         } catch (msg) {
           this._reset();
           return reject(msg);
         }
       }
 
-      let isRedirect = false;
+      resolve(this._index);
+    });
+  }
 
-      // ensure that version is specified, if not, then it's the latest
+  /**
+   * Returns the path to redirect to if the given params are incomplete. If the
+   * params are already complete and no redirect is necessary, null is returned.
+   * This must be called AFTER the index has been loaded, or else the request
+   * will be rejected.
+   * 
+   * @param params Object containing params to resolve
+   */
+  resolveParams(params: Partial<DocsPageParams>): Promise<string> {
+    return new Promise(async (resolve, reject) => {
+      if (!(this._index && (params.package === this._params.package))) {
+        return reject("Must find index before resolving params.");
+      }
+  
+      if (this._paramsAreSameAndComplete(params)) return resolve(null);
+
+      delete this._content;
+
+      // ensure that version is specified, if not, then get the latest
       if (params.version && this._index.versions.includes(params.version)) {
         this._params.version = params.version;
       } else {
         this._params.version = this._index.versions[0];
-        isRedirect = true;
       }
 
-      // update group and item
-      if (!(params.group && params.item)) isRedirect = true;
+      // ensure that group and item are specified
       this._params.group = params.group ?? this._index.groups[0].name;
       this._params.item = params.item ?? this._index.groups[0].items[0];
 
-      // get docs content and resolve/reject
-      try {
-        this._content = await this._fetchContent();
+      // perform redirect
+      const pkg = this._params.package; // package is reserved word
+      const { version, group, item } = this._params;
+      resolve(`/docs/${pkg}/${version}/${group}/${item}`);
+    });
+  }
 
-        resolve({
-          isRedirect,
-          index: this._index,
-          content: this._content
-        });
-
-        replace(`/docs/${this._params.package}/${this._params.version}/${this._params.group}/${this._params.item}`);
-      } catch (msg) {
-        reject(msg);
+  /**
+   * Returns the documentation content for the given params. Request is rejected
+   * if the index hasn't been loaded yet, if the path is not resolved, or if the
+   * documentation could not be found.
+   * 
+   * @param params Params to get documentation for
+   */
+  requestContent(params: DocsPageParams): Promise<DocsContentData> {
+    return new Promise(async (resolve, reject) => {
+      if (!(this._index && (params.package === this._params.package))) {
+        return reject("Must find index before requesting docs content.");
+      } else if (!this._paramsAreSameAndComplete(params)) {
+        return reject("Must resolve params before requesting docs content.");
       }
+
+      try {
+        this._content ??= await DocumentationController._fetchContent(params);
+      } catch (msg) {
+        return reject(msg);
+      }
+
+      resolve(this._content);
+    });
+  }
+
+  private _paramsAreSameAndComplete(params: Partial<DocsPageParams>): boolean {
+    return Object.keys(this._params).every((name: string) => {
+      // checking params[name] ensures that path is also complete
+      return params[name] && (params[name] === this._params[name]);
     });
   }
 
@@ -81,21 +122,9 @@ export default class DocumentationController {
     delete this._content;
   }
 
-  private _alreadyHasDocs(params: Partial<DocsPageParams>): boolean {
-    return (
-      this._index &&
-      this._content &&
-      this._params &&
-      (this._params.package === params.package) &&
-      (this._params.version === params.version) &&
-      (this._params.group === params.group) &&
-      (this._params.item === params.item)
-    );
-  }
-
-  private async _fetchIndex(): Promise<DocsIndexData> {
+  private static _fetchIndex(packageName: string): Promise<DocsIndexData> {
     return new Promise((resolve, reject) => {
-      const url = `https://raw.githubusercontent.com/sims4toolkit/${this._params.package}/main/docs/index.json`;
+      const url = `https://raw.githubusercontent.com/sims4toolkit/${packageName}/main/docs/index.json`;
 
       fetch(url)
         .then((response) => response.json())
@@ -103,14 +132,18 @@ export default class DocumentationController {
           resolve(jsonData);
         })
         .catch(() => {
-          reject(`Index could not be found for package "${this._params.package}".`);
+          reject(`Index could not be found for package "${packageName}".`);
         });
     });
   }
 
-  private async _fetchContent(): Promise<DocsContentData> {
+  private static _fetchContent(params: DocsPageParams): Promise<DocsContentData> {
     return new Promise((resolve, reject) => {
-      const url = `https://raw.githubusercontent.com/sims4toolkit/${this._params.package}/version/${this._params.version.replace(/\./g, "-")}/docs/${this._params.group}/${this._params.item}.json`;
+      const pkg = params.package; // "package" is reserved word in JS
+      const { version, group, item } = params;
+      const formattedVersion = version.replace(/\./g, "-");
+
+      const url = `https://raw.githubusercontent.com/sims4toolkit/${pkg}/version/${formattedVersion}/docs/${group}/${item}.json`;
       
       fetch(url)
         .then((response) => response.json())
@@ -118,7 +151,7 @@ export default class DocumentationController {
           resolve(jsonData);
         })
         .catch(() => {
-          reject(`Documentation content could not be found for package "${this._params.package}".`);
+          reject(`Documentation content could not be found for package "${pkg}".`);
         });
     });
   }
