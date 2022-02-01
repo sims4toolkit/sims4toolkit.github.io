@@ -1,6 +1,6 @@
 <script lang="ts">
   import SectionHeader from "../../../shared/SectionHeader.svelte";
-  import ContentDelegate from "./ContentDelegate.svelte";
+  import ContentDelegate from "./sections/ContentDelegate.svelte";
 
   export let section: DocsSection;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import CodeBlock from "../../../shared/CodeBlock.svelte";
-  import DocTypeReferenceLink from "./DocTypeReferenceLink.svelte";
+  import CodeBlock from "../../../../shared/CodeBlock.svelte";
+  import DocTypeReferenceLink from "../DocTypeReferenceLink.svelte";
 
   export let functionData: DocsSectionFunction;
 

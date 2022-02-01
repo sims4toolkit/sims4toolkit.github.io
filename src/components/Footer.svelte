@@ -8,7 +8,7 @@
     Inc. (EA). Sims 4 Toolkit is not affiliated with or endorsed by EA.
   </p>
   <p class="disclaimer">npm is a registered trademark of npm, Inc.</p>
-  <p class="disclaimer">2022 © Frankk</p>
+  <p class="disclaimer">2022 © Frank Kulak</p>
 </section>
 
 <style lang="scss">

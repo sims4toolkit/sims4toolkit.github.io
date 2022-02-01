@@ -1,5 +1,5 @@
 <script lang="ts">
-  import DocTypeReferenceLink from "./DocTypeReferenceLink.svelte";
+  import DocTypeReferenceLink from "../DocTypeReferenceLink.svelte";
 
   export let propertyData: DocsSectionProperty;
 </script>
