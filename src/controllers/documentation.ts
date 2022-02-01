@@ -62,15 +62,17 @@ export default class DocumentationController {
       if (!(this._index && (params.package === this._params.package))) {
         return reject("Must find index before resolving params.");
       }
+
+      const versionIsValid = params.version && this._index.versions.includes(params.version);
   
-      if (this._paramsAreSameAndComplete(params)) {
+      if (versionIsValid && this._paramsAreSameAndComplete(params)) {
         return resolve(null);
       }
       
       delete this._content;
 
       // ensure that version is specified, if not, then get the latest
-      if (params.version && this._index.versions.includes(params.version)) {
+      if (versionIsValid) {
         this._params.version = params.version;
       } else {
         this._params.version = this._index.versions[0];
@@ -129,8 +131,6 @@ export default class DocumentationController {
 
   private static _fetchIndex(packageName: string): Promise<DocsIndexData> {
     return new Promise((resolve, reject) => {
-      console.log("-- Fetching index..."); // FIXME: delete
-      
       const url = `https://raw.githubusercontent.com/sims4toolkit/${packageName}/main/docs/index.json`;
 
       fetch(url)
@@ -146,8 +146,6 @@ export default class DocumentationController {
 
   private static _fetchContent(params: DocsPageParams): Promise<DocsContentData> {
     return new Promise((resolve, reject) => {
-      console.log("-- Fetching docs..."); // FIXME: delete
-
       const pkg = params.package; // "package" is reserved word in JS
       const { version, group, item } = params;
       const formattedVersion = version.replace(/\./g, "-");

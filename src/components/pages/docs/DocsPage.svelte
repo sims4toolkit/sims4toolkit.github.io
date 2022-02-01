@@ -10,6 +10,8 @@
   import DocsContent from "./DocsContent.svelte";
   import { setContext } from "svelte";
   import DocumentationController from "../../../controllers/documentation";
+  import compare from "just-compare";
+  import clone from "just-clone";
 
   export let params: DocsPageParams;
 
@@ -20,6 +22,7 @@
   let docsReady = false;
   let packageData: PackageData;
   let indexData: DocsIndexData;
+  let lastParams: DocsPageParams;
 
   async function redirect(newParams: Partial<DocsPageParams>) {
     const paramsToUse: Partial<DocsPageParams> = {};
@@ -61,9 +64,16 @@
   });
 
   $: {
-    params.package; // listen for changes
-    packageData = documentation[params.package];
-    loadIndex();
+    params; // listen for changes
+
+    if (!(lastParams && compare(params, lastParams))) {
+      packageData = documentation[params.package];
+      lastParams = clone(params);
+      isError = false;
+      showErrorOverlay = false;
+      // docsReady = false;
+      loadIndex();
+    }
   }
 
   async function loadIndex() {
