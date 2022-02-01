@@ -2,7 +2,7 @@
   import GradientBanner from "../../shared/GradientBanner.svelte";
 
   export let packageData: PackageData;
-  $: npmInstallText = `npm i ${packageData.npmName}`;
+  $: npmInstallText = `npm i ${packageData?.npmName}`;
   let npmInstallTextElement: HTMLElement;
 
   function copyNpmInstallText() {
@@ -22,11 +22,11 @@
 <GradientBanner>
   <div id="docs-banner" class="flex-center flex-col">
     <h2 class="text-center text-shadow m-0">
-      {packageData.description}
+      {packageData?.description}
     </h2>
     <p class="text-center">
-      Available on <a href={packageData.npmLink} target="_blank">npm</a> and
-      <a href={packageData.repoLink} target="_blank">GitHub</a>.
+      Available on <a href={packageData?.npmLink} target="_blank">npm</a> and
+      <a href={packageData?.repoLink} target="_blank">GitHub</a>.
     </p>
     <div class="npm-install-container flex-center">
       <code bind:this={npmInstallTextElement}>{npmInstallText}</code>

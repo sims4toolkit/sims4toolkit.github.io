@@ -10,7 +10,7 @@
 
   function onVersionChange() {
     if (versionSelect.value !== params.version) {
-      context.requestNewDocs({ version: versionSelect.value });
+      context.redirect({ version: versionSelect.value });
     }
   }
 
@@ -25,7 +25,7 @@
 
   function setActive(group: string, item: string) {
     if (group !== params.group || item !== params.item) {
-      context.requestNewDocs({ group, item });
+      context.redirect({ group, item });
       context.scrollToTop();
     }
   }

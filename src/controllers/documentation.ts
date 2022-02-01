@@ -1,4 +1,5 @@
 import documentationData from "../data/documentation.json";
+import clone from "just-clone";
 
 /**
  * Handles fetching of documentation indices and content.
@@ -24,20 +25,20 @@ export default class DocumentationController {
    * if the main branch of its repo does not have a file called "index.json" in
    * a "docs" folder at the highest level.
    * 
-   * @param packageName Name of package to get index for
+   * @param params Params to get index for
    */
-  requestIndex(packageName: string): Promise<DocsIndexData> {
+  requestIndex(params: Partial<DocsPageParams>): Promise<DocsIndexData> {
     return new Promise(async (resolve, reject) => {
-      if (!(packageName in documentationData)) {
+      if (!(params.package in documentationData)) {
         this._reset();
-        return reject(`Package "${packageName}" is not registered.`);
+        return reject(`Package "${params.package}" is not registered.`);
       }
 
-      if (!(this._index && (packageName === this._params.package))) {
-        this._params.package = packageName;
+      if (!(this._index && (params.package === this._params.package))) {
+        this._params = clone(params);
 
         try {
-          this._index = await DocumentationController._fetchIndex(packageName);
+          this._index = await DocumentationController._fetchIndex(params.package);
         } catch (msg) {
           this._reset();
           return reject(msg);
@@ -62,8 +63,10 @@ export default class DocumentationController {
         return reject("Must find index before resolving params.");
       }
   
-      if (this._paramsAreSameAndComplete(params)) return resolve(null);
-
+      if (this._paramsAreSameAndComplete(params)) {
+        return resolve(null);
+      }
+      
       delete this._content;
 
       // ensure that version is specified, if not, then get the latest
@@ -99,10 +102,12 @@ export default class DocumentationController {
         return reject("Must resolve params before requesting docs content.");
       }
 
-      try {
-        this._content ??= await DocumentationController._fetchContent(params);
-      } catch (msg) {
-        return reject(msg);
+      if (!this._content) {
+        try {
+          this._content = await DocumentationController._fetchContent(params);
+        } catch (msg) {
+          return reject(msg);
+        }
       }
 
       resolve(this._content);
@@ -110,7 +115,7 @@ export default class DocumentationController {
   }
 
   private _paramsAreSameAndComplete(params: Partial<DocsPageParams>): boolean {
-    return Object.keys(this._params).every((name: string) => {
+    return Object.keys(this._params).every((name: string) => {      
       // checking params[name] ensures that path is also complete
       return params[name] && (params[name] === this._params[name]);
     });
@@ -124,6 +129,8 @@ export default class DocumentationController {
 
   private static _fetchIndex(packageName: string): Promise<DocsIndexData> {
     return new Promise((resolve, reject) => {
+      console.log("-- Fetching index..."); // FIXME: delete
+      
       const url = `https://raw.githubusercontent.com/sims4toolkit/${packageName}/main/docs/index.json`;
 
       fetch(url)
@@ -139,6 +146,8 @@ export default class DocumentationController {
 
   private static _fetchContent(params: DocsPageParams): Promise<DocsContentData> {
     return new Promise((resolve, reject) => {
+      console.log("-- Fetching docs..."); // FIXME: delete
+
       const pkg = params.package; // "package" is reserved word in JS
       const { version, group, item } = params;
       const formattedVersion = version.replace(/\./g, "-");
@@ -151,7 +160,7 @@ export default class DocumentationController {
           resolve(jsonData);
         })
         .catch(() => {
-          reject(`Documentation content could not be found for package "${pkg}".`);
+          reject(`Documentation content could not be found for "${pkg}/${formattedVersion}/${group}/${item}".`);
         });
     });
   }

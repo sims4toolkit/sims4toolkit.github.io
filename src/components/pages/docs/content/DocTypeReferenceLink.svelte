@@ -11,13 +11,13 @@
   }
 
   function goToRefInSamePackage({ group, item }) {
-    context.requestNewDocs({ group, item });
+    context.redirect({ group, item });
     context.scrollToTop();
   }
 </script>
 
 {#if typeRef.path}
-  {#if typeRef.path.pkg === context.currentPackage}
+  {#if context.inPackage(typeRef.path.pkg)}
     <span class="type-ref" on:click={() => goToRefInSamePackage(typeRef.path)}>
       {typeRef.name}
     </span>

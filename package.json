@@ -29,6 +29,8 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
+    "just-clone": "^5.0.1",
+    "just-compare": "^2.0.1",
     "sass": "^1.43.4",
     "sirv-cli": "^1.0.0",
     "svelte-prism": "^1.1.3",

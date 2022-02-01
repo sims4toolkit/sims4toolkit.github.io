@@ -9,85 +9,94 @@
   import SplitView from "../../shared/SplitView.svelte";
   import DocsContent from "./DocsContent.svelte";
   import { setContext } from "svelte";
+  import DocumentationController from "../../../controllers/documentation";
 
   export let params: DocsPageParams;
 
+  const controller = new DocumentationController();
+
   let isError = false;
   let showErrorOverlay = false;
+  let docsReady = false;
   let packageData: PackageData;
   let indexData: DocsIndexData;
 
-  $: docsReady = indexData && params.version && params.group && params.item;
+  async function redirect(newParams: Partial<DocsPageParams>) {
+    const paramsToUse: Partial<DocsPageParams> = {};
+    for (const param in params) {
+      paramsToUse[param] = newParams[param] ?? params[param];
+    }
 
-  packageData = documentation[params.package];
+    controller.resolveParams(paramsToUse).then((newPath) => {
+      if (newPath) {
+        replace(newPath);
+      }
+    });
+  }
 
-  // setContext("docs", {
-  //   currentPackage: params.package,
-  //   async requestNewDocs(newParams: Partial<DocsPageParams>) {
-  //     for (const paramName in newParams) {
-  //       params[paramName] = newParams[paramName];
-  //     }
+  setContext("docs", {
+    controller,
+    redirect,
+    inPackage(pkg: string) {
+      return params.package === pkg;
+    },
+    async scrollToTop() {
+      try {
+        const bodyPos =
+          document.getElementById("docs-page-body")?.offsetTop - 50;
 
-  //     this.currentPackage = params.package;
-  //     setDocsPageRoute(params);
-  //   },
-  //   async scrollToTop() {
-  //     try {
-  //       const bodyPos =
-  //         document.getElementById("docs-page-body")?.offsetTop - 50;
+        const currentPos =
+          window.pageYOffset || document.documentElement.scrollTop;
 
-  //       const currentPos =
-  //         window.pageYOffset || document.documentElement.scrollTop;
+        if (currentPos > bodyPos) {
+          window.scroll({
+            top: bodyPos,
+            behavior: "smooth",
+          });
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+  });
 
-  //       if (currentPos > bodyPos) {
-  //         window.scroll({
-  //           top: bodyPos,
-  //           behavior: "smooth",
-  //         });
-  //       }
-  //     } catch (e) {
-  //       console.warn(e);
-  //     }
-  //   },
-  // });
+  $: {
+    params.package; // listen for changes
+    packageData = documentation[params.package];
+    loadIndex();
+  }
 
-  // async function loadIndex() {
-  //   if (params.package in documentation) {
-  //     packageData = documentation[params.package];
-  //     getDocumentationIndex(params.package)
-  //       .then((data) => {
-  //         indexData = data as DocsIndexData;
+  async function loadIndex() {
+    if (params.package in documentation) {
+      controller
+        .requestIndex(params)
+        .then((index) => {
+          indexData = index as DocsIndexData;
 
-  //         const getLatest = params.version === "latest";
-
-  //         if (getLatest || !params.version || !params.group || !params.item) {
-  //           if (getLatest) {
-  //             params.version = indexData.versions[0];
-  //           } else {
-  //             params.version ??= indexData.versions[0];
-  //           }
-
-  //           params.group ??= indexData.groups[0].name;
-  //           params.item ??= indexData.groups[0].items[0];
-  //           setDocsPageRoute(params);
-  //         }
-  //       })
-  //       .catch((msg) => {
-  //         console.warn(msg);
-  //         showErrorOverlay = true;
-  //         setTimeout(() => {
-  //           isError = true;
-  //         }, 200);
-  //       });
-  //   } else {
-  //     replace("/page-not-found");
-  //   }
-  // }
-
-  // $: {
-  //   params.package;
-  //   loadIndex();
-  // }
+          controller
+            .resolveParams(params)
+            .then((newPath) => {
+              if (newPath) {
+                replace(newPath);
+              } else {
+                docsReady = true;
+              }
+            })
+            .catch((msg) => {
+              console.error(msg);
+            });
+        })
+        .catch((msg) => {
+          console.warn(msg);
+          showErrorOverlay = true;
+          setTimeout(() => {
+            isError = true;
+          }, 220);
+        });
+    } else {
+      replace("/page-not-found");
+    }
+  }
 </script>
 
 <section id="docs-page">
@@ -103,10 +112,12 @@
             refreshing the page, and <a href="/help" use:link>let me know</a> if
             the error persists.
           </p>
-          <p>
-            For the time being, feel free to browse the project
-            <a href={packageData.repoLink} target="_blank">on GitHub</a>.
-          </p>
+          {#if packageData}
+            <p>
+              For the time being, feel free to browse the project
+              <a href={packageData.repoLink} target="_blank">on GitHub</a>.
+            </p>
+          {/if}
           <p class="disclaimer">Error 404</p>
         </div>
       </ContentArea>
@@ -121,7 +132,7 @@
           </div>
         </SplitView>
       </ContentArea>
-    {:else if !showErrorOverlay}
+    {:else}
       <ContentArea>
         <div class="flex-center w-100 loading-text">
           <h1>Loading...</h1>

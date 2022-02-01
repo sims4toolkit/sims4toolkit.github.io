@@ -1,6 +1,10 @@
 <script lang="ts">
   import ContentArea from "../shared/ContentArea.svelte";
   import SectionHeader from "../shared/SectionHeader.svelte";
+
+  // just silencing warnings in a hacky way, don't mind me
+  export let params: any;
+  if (false) console.log(params);
 </script>
 
 <section id="page-not-found">

@@ -5,11 +5,41 @@
   import DocsContentSeparator from "./content/DocsContentSeparator.svelte";
   import DocsContentSection from "./content/DocsContentSection.svelte";
   import DocsContentFooter from "./content/DocsContentFooter.svelte";
+  import { getContext } from "svelte";
+  import type DocumentationController from "../../../controllers/documentation";
+  import compare from "just-compare";
+  import clone from "just-clone";
 
   export let params: DocsPageParams;
 
   let docsData: DocsContentData;
-  let isError = true; // FIXME:
+  let isError = false;
+  let lastParams: DocsPageParams;
+
+  const context: { controller: DocumentationController } = getContext("docs");
+
+  $: {
+    params; // watch all
+
+    if (!(lastParams && compare(params, lastParams))) {
+      isError = false;
+      lastParams = clone(params);
+      loadDocsContent();
+    }
+  }
+
+  async function loadDocsContent() {
+    context.controller
+      .requestContent(params)
+      .then((content) => {
+        docsData = content;
+        isError = false;
+      })
+      .catch((msg) => {
+        console.warn(msg);
+        isError = true;
+      });
+  }
 </script>
 
 <section id="docs-content-section" class="w-100">
