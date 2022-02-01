@@ -12,6 +12,7 @@
 
   function goToRefInSamePackage({ group, item }) {
     context.requestNewDocs({ group, item });
+    context.scrollToTop();
   }
 </script>
 

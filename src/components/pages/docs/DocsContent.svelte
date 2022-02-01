@@ -15,15 +15,17 @@
   $: {
     params;
 
-    getDocumentation(params)
-      .then((docs) => {
-        docsData = docs;
-        isError = false;
-      })
-      .catch((msg) => {
-        isError = true;
-        console.warn(msg);
-      });
+    if (params.version !== "latest") {
+      getDocumentation(params)
+        .then((docs) => {
+          docsData = docs;
+          isError = false;
+        })
+        .catch((msg) => {
+          isError = true;
+          console.warn(msg);
+        });
+    }
   }
 </script>
 

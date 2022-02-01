@@ -21,17 +21,34 @@
 
   $: docsReady = indexData && params.version && params.group && params.item;
 
-  async function requestNewDocs(newParams: Partial<DocsPageParams>) {
-    for (const paramName in newParams) {
-      params[paramName] = newParams[paramName];
-    }
-
-    setDocsPageRoute(params);
-  }
-
   setContext("docs", {
     currentPackage: params.package,
-    requestNewDocs,
+    async requestNewDocs(newParams: Partial<DocsPageParams>) {
+      for (const paramName in newParams) {
+        params[paramName] = newParams[paramName];
+      }
+
+      this.currentPackage = params.package;
+      setDocsPageRoute(params);
+    },
+    async scrollToTop() {
+      try {
+        const bodyPos =
+          document.getElementById("docs-page-body")?.offsetTop - 50;
+
+        const currentPos =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentPos > bodyPos) {
+          window.scroll({
+            top: bodyPos,
+            behavior: "smooth",
+          });
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    },
   });
 
   async function loadIndex() {
@@ -75,40 +92,43 @@
 
 <section id="docs-page">
   <DocsBanner {packageData} />
-  {#if isError}
-    <ContentArea>
-      <div class="fadein">
-        <SectionHeader title="Unlock these docs for $4.04" />
-        <p>
-          Just kidding. This documentation couldn't be found. Please try
-          refreshing the page, and <a href="/help" use:link>let me know</a> if the
-          error persists.
-        </p>
-        <p>
-          For the time being, feel free to browse the project
-          <a href={packageData.repoLink} target="_blank">on GitHub</a>.
-        </p>
-        <p class="disclaimer">Error 404</p>
-      </div>
-    </ContentArea>
-  {:else if docsReady}
-    <ContentArea>
-      <SplitView centerV={false} rightFill={true}>
-        <div slot="left">
-          <DocsIndex {indexData} bind:params />
+  <!-- ID used in reference link for scrolling -->
+  <div id="docs-page-body">
+    {#if isError}
+      <ContentArea>
+        <div class="fadein">
+          <SectionHeader title="Unlock these docs for $4.04" />
+          <p>
+            Just kidding. This documentation couldn't be found. Please try
+            refreshing the page, and <a href="/help" use:link>let me know</a> if
+            the error persists.
+          </p>
+          <p>
+            For the time being, feel free to browse the project
+            <a href={packageData.repoLink} target="_blank">on GitHub</a>.
+          </p>
+          <p class="disclaimer">Error 404</p>
         </div>
-        <div slot="right">
-          <DocsContent bind:params />
+      </ContentArea>
+    {:else if docsReady}
+      <ContentArea>
+        <SplitView centerV={false} rightFill={true}>
+          <div slot="left">
+            <DocsIndex {indexData} bind:params />
+          </div>
+          <div slot="right">
+            <DocsContent bind:params />
+          </div>
+        </SplitView>
+      </ContentArea>
+    {:else if !showErrorOverlay}
+      <ContentArea>
+        <div class="flex-center w-100 loading-text">
+          <h1>Loading...</h1>
         </div>
-      </SplitView>
-    </ContentArea>
-  {:else if !showErrorOverlay}
-    <ContentArea>
-      <div class="flex-center w-100 loading-text">
-        <h1>Loading...</h1>
-      </div>
-    </ContentArea>
-  {/if}
+      </ContentArea>
+    {/if}
+  </div>
 </section>
 {#if showErrorOverlay}
   <BlurOverlay>

@@ -26,6 +26,7 @@
   function setActive(group: string, item: string) {
     if (group !== params.group || item !== params.item) {
       context.requestNewDocs({ group, item });
+      context.scrollToTop();
     }
   }
 </script>
