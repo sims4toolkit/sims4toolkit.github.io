@@ -8,8 +8,6 @@
   import DocsIndex from "./DocsIndex.svelte";
   import SplitView from "../../shared/SplitView.svelte";
   import DocsContent from "./DocsContent.svelte";
-  import { getDocumentationIndex } from "../../../services/documentation";
-  import { setDocsPageRoute } from "../../../services/routing";
   import { setContext } from "svelte";
 
   export let params: DocsPageParams;
@@ -21,73 +19,75 @@
 
   $: docsReady = indexData && params.version && params.group && params.item;
 
-  setContext("docs", {
-    currentPackage: params.package,
-    async requestNewDocs(newParams: Partial<DocsPageParams>) {
-      for (const paramName in newParams) {
-        params[paramName] = newParams[paramName];
-      }
+  packageData = documentation[params.package];
 
-      this.currentPackage = params.package;
-      setDocsPageRoute(params);
-    },
-    async scrollToTop() {
-      try {
-        const bodyPos =
-          document.getElementById("docs-page-body")?.offsetTop - 50;
+  // setContext("docs", {
+  //   currentPackage: params.package,
+  //   async requestNewDocs(newParams: Partial<DocsPageParams>) {
+  //     for (const paramName in newParams) {
+  //       params[paramName] = newParams[paramName];
+  //     }
 
-        const currentPos =
-          window.pageYOffset || document.documentElement.scrollTop;
+  //     this.currentPackage = params.package;
+  //     setDocsPageRoute(params);
+  //   },
+  //   async scrollToTop() {
+  //     try {
+  //       const bodyPos =
+  //         document.getElementById("docs-page-body")?.offsetTop - 50;
 
-        if (currentPos > bodyPos) {
-          window.scroll({
-            top: bodyPos,
-            behavior: "smooth",
-          });
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    },
-  });
+  //       const currentPos =
+  //         window.pageYOffset || document.documentElement.scrollTop;
 
-  async function loadIndex() {
-    if (params.package in documentation) {
-      packageData = documentation[params.package];
-      getDocumentationIndex(params.package)
-        .then((data) => {
-          indexData = data as DocsIndexData;
+  //       if (currentPos > bodyPos) {
+  //         window.scroll({
+  //           top: bodyPos,
+  //           behavior: "smooth",
+  //         });
+  //       }
+  //     } catch (e) {
+  //       console.warn(e);
+  //     }
+  //   },
+  // });
 
-          const getLatest = params.version === "latest";
+  // async function loadIndex() {
+  //   if (params.package in documentation) {
+  //     packageData = documentation[params.package];
+  //     getDocumentationIndex(params.package)
+  //       .then((data) => {
+  //         indexData = data as DocsIndexData;
 
-          if (getLatest || !params.version || !params.group || !params.item) {
-            if (getLatest) {
-              params.version = indexData.versions[0];
-            } else {
-              params.version ??= indexData.versions[0];
-            }
+  //         const getLatest = params.version === "latest";
 
-            params.group ??= indexData.groups[0].name;
-            params.item ??= indexData.groups[0].items[0];
-            setDocsPageRoute(params);
-          }
-        })
-        .catch((msg) => {
-          console.warn(msg);
-          showErrorOverlay = true;
-          setTimeout(() => {
-            isError = true;
-          }, 200);
-        });
-    } else {
-      replace("/page-not-found");
-    }
-  }
+  //         if (getLatest || !params.version || !params.group || !params.item) {
+  //           if (getLatest) {
+  //             params.version = indexData.versions[0];
+  //           } else {
+  //             params.version ??= indexData.versions[0];
+  //           }
 
-  $: {
-    params.package;
-    loadIndex();
-  }
+  //           params.group ??= indexData.groups[0].name;
+  //           params.item ??= indexData.groups[0].items[0];
+  //           setDocsPageRoute(params);
+  //         }
+  //       })
+  //       .catch((msg) => {
+  //         console.warn(msg);
+  //         showErrorOverlay = true;
+  //         setTimeout(() => {
+  //           isError = true;
+  //         }, 200);
+  //       });
+  //   } else {
+  //     replace("/page-not-found");
+  //   }
+  // }
+
+  // $: {
+  //   params.package;
+  //   loadIndex();
+  // }
 </script>
 
 <section id="docs-page">

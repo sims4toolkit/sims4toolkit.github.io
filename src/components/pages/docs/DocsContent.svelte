@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { getDocumentation } from "../../../services/documentation";
   import { link } from "svelte-spa-router";
   import DocsContentHeader from "./content/DocsContentHeader.svelte";
   import DocsContentImports from "./content/DocsContentImports.svelte";
@@ -10,23 +9,7 @@
   export let params: DocsPageParams;
 
   let docsData: DocsContentData;
-  let isError = false;
-
-  $: {
-    params;
-
-    if (params.version !== "latest") {
-      getDocumentation(params)
-        .then((docs) => {
-          docsData = docs;
-          isError = false;
-        })
-        .catch((msg) => {
-          isError = true;
-          console.warn(msg);
-        });
-    }
-  }
+  let isError = true; // FIXME:
 </script>
 
 <section id="docs-content-section" class="w-100">
