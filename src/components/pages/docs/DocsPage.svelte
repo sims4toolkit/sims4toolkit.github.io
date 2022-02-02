@@ -40,8 +40,9 @@
   setContext("docs", {
     controller,
     redirect,
-    inPackage(pkg: string) {
-      return params.package === pkg;
+    getHrefForPath({ pkg, group, item }) {
+      const version = params.package === pkg ? params.version : "latest";
+      return `#/docs/${pkg}/${version}/${group}/${item}`;
     },
     getRepoBaseForVersion(): string {
       const pkg = params.package;
