@@ -9,7 +9,7 @@
   <SectionHeader title={section.title} noTopMargin={true} />
 {/if}
 {#if section.description}
-  <p>{section.description}</p>
+  <p class="newlines">{section.description}</p>
 {/if}
 <div
   class="docs-content-body"

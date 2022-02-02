@@ -57,7 +57,7 @@
       />
     </p>
   {/if}
-  <p class="mb-0">{functionData.description}</p>
+  <p class="mb-0 newlines">{functionData.description}</p>
   {#if functionData.arguments?.length}
     <p class="mini-title">arguments</p>
     {#each functionData.arguments as arg, argKey (argKey)}

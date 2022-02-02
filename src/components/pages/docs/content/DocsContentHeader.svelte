@@ -39,7 +39,7 @@
       </div>
     </div>
   {/if}
-  <p>{header.description}</p>
+  <p class="newlines">{header.description}</p>
   {#if header.sourceCode}
     <a
       class="smaller-font"

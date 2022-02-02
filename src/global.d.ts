@@ -95,7 +95,7 @@ interface DocsSectionFunction {
 interface DocsSectionEnum {
   displayType: "enum";
   values: {
-    key: string;
+    name: string;
     value: string;
   }[];
 }

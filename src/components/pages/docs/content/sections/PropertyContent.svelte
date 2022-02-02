@@ -11,6 +11,9 @@
     {/if}
     <code class="accent-color">{propertyData.name}</code>
     <span class="unbold">
+      {#if propertyData.optional}
+        ?
+      {/if}
       {#if propertyData.type}
         :
         <DocTypeReferenceLink typeRef={propertyData.type} />
@@ -24,7 +27,7 @@
       />
     </p>
   {/if}
-  <p class="mb-0">{propertyData.description}</p>
+  <p class="mb-0 newlines">{propertyData.description}</p>
 </div>
 
 <style lang="scss">
