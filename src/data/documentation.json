@@ -3,30 +3,35 @@
     "description": "Utility classes for encoding binary files.",
     "repoLink": "https://github.com/sims4toolkit/encoding",
     "npmLink": "https://npmjs.com/package/@s4tk/encoding",
-    "npmName": "@s4tk/encoding"
+    "npmName": "@s4tk/encoding",
+    "pinned": false
   },
   "hashing": {
     "description": "Utility functions for FNV hashing.",
     "repoLink": "https://github.com/sims4toolkit/hashing",
     "npmLink": "https://npmjs.com/package/@s4tk/hashing",
-    "npmName": "@s4tk/hashing"
+    "npmName": "@s4tk/hashing",
+    "pinned": false
   },
   "models": {
     "description": "Models for packages and their resources.",
     "repoLink": "https://github.com/sims4toolkit/models",
     "npmLink": "https://npmjs.com/package/@s4tk/models",
-    "npmName": "@s4tk/models"
+    "npmName": "@s4tk/models",
+    "pinned": true
   },
   "tunables": {
     "description": "Convenience functions for tunable nodes.",
     "repoLink": "https://github.com/sims4toolkit/tunables",
     "npmLink": "https://npmjs.com/package/@s4tk/tunables",
-    "npmName": "@s4tk/tunables"
+    "npmName": "@s4tk/tunables",
+    "pinned": false
   },
   "xml-dom": {
     "description": "Models for XML, tailored for tuning.",
     "repoLink": "https://github.com/sims4toolkit/xml-dom",
     "npmLink": "https://npmjs.com/package/@s4tk/xml-dom",
-    "npmName": "@s4tk/xml-dom"
+    "npmName": "@s4tk/xml-dom",
+    "pinned": false
   }
 }
