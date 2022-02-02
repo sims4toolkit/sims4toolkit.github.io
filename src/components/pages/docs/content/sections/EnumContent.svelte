@@ -3,7 +3,12 @@
 </script>
 
 <div class="docs-content-enum">
-  {enumData.displayType}
+  {#each enumData.values as entry, key (key)}
+    <h4>
+      <span class="accent-color">{entry.name}</span>
+      <span class="unbold">= {entry.value}</span>
+    </h4>
+  {/each}
 </div>
 
 <style lang="scss">
