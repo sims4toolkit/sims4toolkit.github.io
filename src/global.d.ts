@@ -59,8 +59,10 @@ type DocsSectionContent =
 
 interface DocsSectionProperty {
   displayType: "property";
+  deprecation?: DeprecationWarning;
   prefix?: string;
   name: string;
+  overrides?: DocsTypeReference;
   type: DocsTypeReference;
   description?: string;
   optional?: boolean;
@@ -76,9 +78,11 @@ interface DocsFunctionArguments {
 
 interface DocsSectionFunction {
   displayType: "function";
+  deprecation?: DeprecationWarning;
   prefix?: string;
   name: string;
   description?: string;
+  overrides?: DocsTypeReference;
   generics?: DocsTypeGeneric[];
   returnType?: DocsTypeReference;
   arguments?: DocsFunctionArguments[];
@@ -113,4 +117,9 @@ interface DocsTypeReference {
 interface DocsTypeGeneric {
   name: string;
   extends?: DocsTypeReference[];
+}
+
+interface DeprecationWarning {
+  isDeprecated?: boolean;
+  date?: string;
 }
