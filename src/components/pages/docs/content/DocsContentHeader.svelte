@@ -19,6 +19,27 @@
           <span class="prefix">{header.title.prefix}</span>
         {/if}
         {header.title.name}
+        {#if header.title.generics}
+          <span class="prefix">
+            &lt;
+            {#each header.title.generics as gen, genKey (genKey)}
+              {#if genKey !== 0}
+                ,
+              {/if}
+              {gen.name}
+              {#if gen.extends}
+                extends
+                {#each gen.extends as ext, extKey (extKey)}
+                  {#if extKey !== 0}
+                    ,
+                  {/if}
+                  <DocTypeReferenceLink typeRef={ext} />
+                {/each}
+              {/if}
+            {/each}
+            &gt;
+          </span>
+        {/if}
       </h1>
       <div class="smaller-font">
         {#if header.title.extends?.length}
