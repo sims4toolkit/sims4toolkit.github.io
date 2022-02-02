@@ -42,6 +42,9 @@
   }
 </script>
 
+<svelte:head>
+  <title>S4TK | {params.item}</title>
+</svelte:head>
 <section id="docs-content-section" class="w-100">
   {#if isError}
     <div class="docs-content-body">

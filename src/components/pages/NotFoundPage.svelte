@@ -7,6 +7,9 @@
   if (false) console.log(params);
 </script>
 
+<svelte:head>
+  <title>Page Not Found</title>
+</svelte:head>
 <section id="page-not-found">
   <ContentArea>
     <SectionHeader title="Unlock this page for $4.04" />

@@ -6,6 +6,9 @@
   const discordLink = "https://discord.gg/qNhD3Jh";
 </script>
 
+<svelte:head>
+  <title>S4TK | Help</title>
+</svelte:head>
 <section id="help-page" class="under-navbar">
   <ContentArea>
     <SectionHeader title="Website troubles" />

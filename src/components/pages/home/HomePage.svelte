@@ -6,6 +6,9 @@
   import CodeDemo from "./CodeDemo.svelte";
 </script>
 
+<svelte:head>
+  <title>Sims 4 Toolkit</title>
+</svelte:head>
 <section id="home">
   <HomeBanner />
   <ContentArea banded={false}>

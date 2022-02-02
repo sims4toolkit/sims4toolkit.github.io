@@ -5,6 +5,9 @@
   import SectionHeader from "../../shared/SectionHeader.svelte";
 </script>
 
+<svelte:head>
+  <title>S4TK | Docs</title>
+</svelte:head>
 <section id="docs-landing-page" class="under-navbar">
   <ContentArea>
     <div class="docs-links-wrapper">
