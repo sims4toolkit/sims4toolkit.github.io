@@ -60,6 +60,7 @@
       class="banner-toggle is-svg light-svg hoverable"
       src={imgPath}
       alt={imgAlt}
+      title="Hide Banner on Page Load"
       on:click={toggleBanners}
     />
   {/if}
