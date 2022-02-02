@@ -1,8 +1,51 @@
 <script lang="ts">
+  import { onDestroy, onMount } from "svelte";
+
   export let showDisclaimer = true;
+  export let hideable = false;
+
+  let banner: HTMLElement;
+  let hideBannerSetting: boolean =
+    localStorage.getItem("hideBanner") === "true";
+
+  $: imgPath = hideBannerSetting
+    ? "../assets/eye-off-outline.svg"
+    : "../assets/eye-outline.svg";
+
+  $: imgAlt = hideBannerSetting ? "Banner Hidden" : "Banner Shown";
+
+  function toggleBanners() {
+    hideBannerSetting = !hideBannerSetting;
+    localStorage.setItem("hideBanner", `${hideBannerSetting}`);
+    if (hideBannerSetting) {
+      window.scroll({
+        top: banner.offsetHeight - 50,
+        behavior: "smooth",
+      });
+    }
+  }
+
+  function skipBanner() {
+    if (hideBannerSetting) window.scrollTo(0, banner.offsetHeight - 50);
+  }
+
+  onMount(() => {
+    if (hideable) {
+      skipBanner();
+      window.addEventListener("hashchange", skipBanner);
+    }
+  });
+
+  onDestroy(() => {
+    if (hideable) window.removeEventListener("hashchange", skipBanner);
+  });
 </script>
 
-<div class="gradient-banner default-gradient-bg flex-center flex-col">
+<div
+  id="gradient-banner"
+  class="gradient-banner default-gradient-bg flex-center flex-col"
+  bind:this={banner}
+>
   <div class="banner-content">
     <slot />
   </div>
@@ -12,10 +55,19 @@
       Arts, Inc. (EA). Sims 4 Toolkit is not affiliated with or endorsed by EA.
     </p>
   {/if}
+  {#if hideable}
+    <img
+      class="banner-toggle is-svg light-svg hoverable"
+      src={imgPath}
+      alt={imgAlt}
+      on:click={toggleBanners}
+    />
+  {/if}
 </div>
 
 <style lang="scss">
   .gradient-banner {
+    position: relative;
     width: 100%;
     color: var(--color-light);
     padding: {
@@ -27,6 +79,13 @@
 
     .banner-content {
       margin: 3.5em 0;
+    }
+
+    img.banner-toggle {
+      width: 20px;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
     }
   }
 

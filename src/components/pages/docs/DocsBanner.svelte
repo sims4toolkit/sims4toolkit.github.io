@@ -19,7 +19,7 @@
   }
 </script>
 
-<GradientBanner>
+<GradientBanner hideable={true}>
   <div id="docs-banner" class="flex-center flex-col">
     <h2 class="text-center text-shadow m-0">
       {packageData?.description}

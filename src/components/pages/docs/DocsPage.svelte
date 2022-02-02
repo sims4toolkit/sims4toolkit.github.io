@@ -176,7 +176,9 @@
 
 <style lang="scss">
   section#docs-page {
-    min-height: 100vh;
+    #docs-page-body {
+      min-height: 100vh;
+    }
 
     .loading-text {
       opacity: 0.1;
