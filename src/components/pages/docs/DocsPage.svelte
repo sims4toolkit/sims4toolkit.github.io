@@ -70,6 +70,7 @@
 
   $: {
     params; // listen for changes
+    params.item;
 
     if (!(lastParams && compare(params, lastParams))) {
       packageData = documentation[params.package];

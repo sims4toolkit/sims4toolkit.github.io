@@ -43,6 +43,10 @@
   function getGroupName(groupName: string): string {
     return groupName.replace(/-/g, " ");
   }
+
+  function getHrefForEntry(group: string, item: string): string {
+    return `#/docs/${params.package}/${params.version}/${group}/${item}`;
+  }
 </script>
 
 <section id="docs-index">
@@ -67,13 +71,13 @@
     <div class="docs-index-section">
       <h6>{getGroupName(group.name)}</h6>
       {#each group.items as item, entryKey (entryKey)}
-        <div
+        <a
           class="entry"
           class:active={isActive(group.name, item) && params}
-          on:click={() => setActive(group.name, item)}
+          href={getHrefForEntry(group.name, item)}
         >
           {item}
-        </div>
+        </a>
       {/each}
     </div>
   {/each}
@@ -105,10 +109,13 @@
         opacity: 0.65;
       }
 
-      div.entry {
+      a.entry {
         padding: 0.5em;
         border-radius: 6px;
         white-space: nowrap;
+        display: block;
+        color: var(--color-text);
+        text-decoration: none;
 
         &.active {
           background-color: var(--color-text);

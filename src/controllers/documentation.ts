@@ -10,6 +10,8 @@ export default class DocumentationController {
   private _content?: DocsContentData;
 
   constructor() {
+    console.log("new controller");
+    
     // just so keys exist
     this._params = {
       package: undefined,
@@ -101,6 +103,8 @@ export default class DocumentationController {
       if (!(this._index && (params.package === this._params.package))) {
         return reject("Must find index before requesting docs content.");
       } else if (!this._paramsAreSameAndComplete(params)) {
+        console.log(this._params, params);
+        
         return reject("Must resolve params before requesting docs content.");
       }
 
