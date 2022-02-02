@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>S4TK | Desktopt</title>
+  <title>S4TK | Desktop</title>
 </svelte:head>
 <section id="desktop-page" class="flex-center under-navbar">
   <p>This page ain't ready yet, my dude.</p>
