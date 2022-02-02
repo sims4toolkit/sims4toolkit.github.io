@@ -17,6 +17,13 @@
       {/if}
     </span>
   </h4>
+  {#if propertyData.overrides}
+    <p class="smaller-font">
+      Overrides property in <DocTypeReferenceLink
+        typeRef={propertyData.overrides}
+      />
+    </p>
+  {/if}
   <p class="mb-0">{propertyData.description}</p>
 </div>
 

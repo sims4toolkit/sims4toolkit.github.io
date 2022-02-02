@@ -50,6 +50,13 @@
       {/if}
     </span>
   </h4>
+  {#if functionData.overrides}
+    <p class="smaller-font">
+      Overrides method in <DocTypeReferenceLink
+        typeRef={functionData.overrides}
+      />
+    </p>
+  {/if}
   <p class="mb-0">{functionData.description}</p>
   {#if functionData.arguments?.length}
     <p class="mini-title">arguments</p>
