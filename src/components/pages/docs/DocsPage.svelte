@@ -70,14 +70,12 @@
 
   $: {
     params; // listen for changes
-    params.item;
 
     if (!(lastParams && compare(params, lastParams))) {
       packageData = documentation[params.package];
       lastParams = clone(params);
       isError = false;
       showErrorOverlay = false;
-      // docsReady = false;
       loadIndex();
     }
   }
