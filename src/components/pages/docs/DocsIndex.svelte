@@ -39,6 +39,10 @@
   function getSelectName(version: string): string {
     return version === indexData.versions[0] ? `${version} (latest)` : version;
   }
+
+  function getGroupName(groupName: string): string {
+    return groupName.replace(/-/g, " ");
+  }
 </script>
 
 <section id="docs-index">
@@ -61,7 +65,7 @@
   </p>
   {#each indexData.groups as group, sectionKey (sectionKey)}
     <div class="docs-index-section">
-      <h6>{group.name}</h6>
+      <h6>{getGroupName(group.name)}</h6>
       {#each group.items as item, entryKey (entryKey)}
         <div
           class="entry"
