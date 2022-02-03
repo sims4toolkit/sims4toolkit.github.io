@@ -138,7 +138,7 @@
       </ContentArea>
     {:else if docsReady}
       <ContentArea>
-        <SplitView centerV={false} rightFill={true}>
+        <SplitView centerV={false} rightFill={true} reverseOnCollapse={true}>
           <div slot="left">
             <DocsIndex {indexData} bind:params />
           </div>
