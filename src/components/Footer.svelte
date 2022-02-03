@@ -29,9 +29,16 @@
       >Discord</a
     >
   </p>
+  <hr />
   <p class="disclaimer">
     The Sims™ and its plumbob icon are registered trademarks of Electronic Arts,
     Inc. (EA). Sims 4 Toolkit is not affiliated with or endorsed by EA.
+  </p>
+  <p class="disclaimer">
+    All icons on this website are supplied by
+    <a href="https://ionic.io/ionicons" target="_blank">Ionicons</a>, and all
+    files are hosted on
+    <a href="https://github.com/" target="_blank">GitHub</a>.
   </p>
   <p class="disclaimer">2022 © Frank Kulak</p>
 </section>
@@ -46,6 +53,15 @@
 
     .heart {
       color: rgb(218, 76, 135);
+    }
+
+    hr {
+      width: 80px;
+      background-color: var(--color-text);
+      opacity: 0.5;
+      border: none;
+      height: 1px;
+      margin: 20px 0;
     }
   }
 </style>
