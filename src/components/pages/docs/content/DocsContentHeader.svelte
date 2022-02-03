@@ -41,23 +41,22 @@
           </span>
         {/if}
       </h1>
-      <div class="smaller-font">
-        {#if header.title.extends?.length}
+      {#if header.title.extends?.length}
+        <p class="smaller-font mb-0 mt-0">
           extends
           {#each header.title.extends as parent, key (key)}
             <DocTypeReferenceLink typeRef={parent} />
           {/each}
-        {/if}
-        {#if header.title.implements?.length}
-          {#if header.title.extends?.length}
-            |
-          {/if}
+        </p>
+      {/if}
+      {#if header.title.implements?.length}
+        <p class="smaller-font mt-0 mb-0">
           implements
           {#each header.title.implements as parent, key (key)}
             <DocTypeReferenceLink typeRef={parent} />
           {/each}
-        {/if}
-      </div>
+        </p>
+      {/if}
     </div>
   {/if}
   <p class="newlines">{header.description}</p>
