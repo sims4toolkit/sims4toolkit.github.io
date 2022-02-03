@@ -7,6 +7,8 @@
   let banner: HTMLElement;
   let hideBannerSetting: boolean =
     localStorage.getItem("hideBanner") === "true";
+  let showHideHint: boolean =
+    localStorage.getItem("showBannerHideHint") == undefined;
 
   $: imgPath = hideBannerSetting
     ? "../assets/eye-off-outline.svg"
@@ -16,6 +18,8 @@
 
   function toggleBanners() {
     hideBannerSetting = !hideBannerSetting;
+    showHideHint = false;
+    localStorage.setItem("showBannerHideHint", "false");
     localStorage.setItem("hideBanner", `${hideBannerSetting}`);
     if (hideBannerSetting) {
       window.scroll({
@@ -63,6 +67,9 @@
       title="Hide Banner on Page Load"
       on:click={toggleBanners}
     />
+    {#if showHideHint}
+      <p class="hide-hint">Pssst! You can hide me &#8599;</p>
+    {/if}
   {/if}
 </div>
 
@@ -87,6 +94,13 @@
       position: absolute;
       bottom: 14px;
       right: 14px;
+    }
+
+    .hide-hint {
+      position: absolute;
+      bottom: -38px;
+      right: 38px;
+      font-size: 0.8em;
     }
 
     .disclaimer {
