@@ -118,7 +118,7 @@
         text-decoration: none;
 
         &.active {
-          background-color: var(--color-accent);
+          background-color: var(--color-text);
           color: var(--color-bg);
         }
 
