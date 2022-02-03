@@ -3,6 +3,7 @@
   export let rightFill = false;
   export let reverse = false;
   export let expandOnCollapse = false;
+  export let reverseOnCollapse = false;
 </script>
 
 <div
@@ -10,6 +11,7 @@
   class:flex-center-v={centerV}
   class:reverse
   class:expand-on-collapse={expandOnCollapse}
+  class:reverse-on-collapse={reverseOnCollapse}
 >
   <div class="left">
     <slot name="left" />
@@ -44,6 +46,10 @@
         .right {
           width: 100%;
         }
+      }
+
+      &.reverse-on-collapse {
+        flex-direction: column-reverse;
       }
     }
   }
