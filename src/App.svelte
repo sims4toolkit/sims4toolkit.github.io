@@ -52,8 +52,8 @@
       <p>
         It looks like you're new here, so please note that Sims 4 Toolkit is in
         early development. There may be some bugs, some features may be missing,
-        the documentation may change frequently, and breaking changes may occur
-        until version 1.0.0 is released.
+        and the documentation may change frequently. Keep in mind that breaking
+        changes may occur until version 1.0.0 is released.
       </p>
     </div>
     <div slot="actions">
