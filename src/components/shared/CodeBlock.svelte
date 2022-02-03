@@ -22,6 +22,7 @@
     background-color: var(--color-card);
     border-radius: 8px;
     padding: 0 0.5em;
+    max-width: 100%;
     overflow-x: auto;
 
     &.bg-secondary {
