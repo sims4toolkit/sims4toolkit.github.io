@@ -4,6 +4,7 @@
   export let reverse = false;
   export let expandOnCollapse = false;
   export let reverseOnCollapse = false;
+  export let hideRightOverflowX = false;
 </script>
 
 <div
@@ -16,7 +17,11 @@
   <div class="left">
     <slot name="left" />
   </div>
-  <div class="right" class:right-fill={rightFill}>
+  <div
+    class="right"
+    class:right-fill={rightFill}
+    class:hide-overflow-x={hideRightOverflowX}
+  >
     <slot name="right" />
   </div>
 </div>
@@ -24,6 +29,11 @@
 <style lang="scss">
   .split-view {
     gap: 20px;
+    max-width: 100%;
+  }
+
+  .right.hide-overflow-x {
+    overflow-x: hidden;
   }
 
   .right-fill {
