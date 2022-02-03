@@ -13,20 +13,28 @@
   <ContentArea>
     <SectionHeader title="Website troubles" />
     <p>
-      Incorrect/missing docs? Typo? Error 404? Please let me know
-      <a href={discordLink} target="_blank">on Discord</a>.
+      Incorrect/missing docs? Error 404? Formatting/accessibility issues? Typo?
+    </p>
+    <p>
+      Please let me know about any issues with the website, no matter how big or
+      small, either
+      <a href={discordLink} target="_blank">on Discord</a> or by
+      <a
+        href="https://github.com/sims4toolkit/sims4toolkit.github.io/issues"
+        target="_blank">opening an issue</a
+      >.
     </p>
   </ContentArea>
   <ContentArea banded={true}>
     <SectionHeader title="Package no worky" />
     <p>
       Found a bug in one of the S4TK packages? Open an issue in its GitHub
-      repository. Please search the existing issues before posting to make sure
-      you are not creating a duplicate.
+      repository. To find the bug tracker for a specific package, click the "Bug
+      Tracker" link on its <a href="/docs" use:link>documentation page</a>.
     </p>
     <p>
-      To find the repo for a specific package, click the "GitHub" link under its
-      description on its <a href="/docs" use:link>documentation page</a>.
+      Please search the existing issues before posting to make sure you are not
+      creating a duplicate.
     </p>
   </ContentArea>
   <ContentArea>
@@ -38,10 +46,17 @@
       <a href={discordLink} target="_blank">on Discord</a>.
     </p>
     <p>
-      Please note that I will NOT be offering general help with Node.js,
-      JavaScript, or TypeScript. There are so, so, so many resources available
-      to learn them online. Please restrict your questions to those pertaining
-      to S4TK specifically.
+      If you're completely stuck on how to begin using S4TK, please refer to
+      <a href="https://patreon.frankkmods.com" target="_blank"
+        >this post on Patreon</a
+      >
+      for a basic introduction to creating a Node.js project and running JS/TS code.
+    </p>
+    <p>
+      Please note that I will NOT be offering any further help with Node.js,
+      npm, JavaScript, or TypeScript. There are so, so, so many resources
+      available to learn them online. Please restrict your questions to those
+      pertaining to S4TK specifically.
     </p>
   </ContentArea>
 </section>

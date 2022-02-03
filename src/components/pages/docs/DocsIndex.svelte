@@ -6,12 +6,14 @@
 
   let versionSelect: HTMLSelectElement;
   let changelogHref: string;
+  let bugTrackerHref: string;
 
   const context: any = getContext("docs");
 
   $: {
     params.package;
     changelogHref = `https://github.com/sims4toolkit/${params.package}/blob/main/CHANGELOG.md`;
+    bugTrackerHref = `https://github.com/sims4toolkit/${params.package}/issues`;
   }
 
   function onVersionChange() {
@@ -65,7 +67,9 @@
     {/each}
   </select>
   <p class="smaller-font">
-    <a href={changelogHref} target="_blank"> Version History </a>
+    <a href={changelogHref} target="_blank">Version History</a>
+    |
+    <a href={bugTrackerHref} target="_blank">Bug Tracker</a>
   </p>
   {#each indexData.groups as group, sectionKey (sectionKey)}
     <div class="docs-index-section">
