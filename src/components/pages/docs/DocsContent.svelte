@@ -49,13 +49,18 @@
   {#if isError}
     <div class="docs-content-body">
       <p class="w-100">
-        Something went wrong while fetching the documentation for "{params.group}/{params.item}".
-        This is either due to this resource not existing in the selected version
-        ({params.version}), or an internal error.
+        Something went wrong while fetching the docs for "{params.item}". This
+        is either due to the URL being incorrect, the resource not existing in
+        the selected version ({params.version}), or GitHub (where the docs are
+        hosted) experiencing technical problems.
       </p>
-      <p class="w-100">
-        Try switching to the latest version, and if you are still seeing this
-        error, please <a href="/help" use:link>let me know</a>.
+      <p>
+        Try switching to the latest version, refreshing the page, and ensuring
+        that
+        <a href="https://www.githubstatus.com/" target="_blank">
+          GitHub is not down</a
+        >. If you are still seeing this error, please
+        <a href="/help" use:link>let me know</a>.
       </p>
       <p class="disclaimer">Error 404</p>
     </div>
