@@ -85,8 +85,15 @@
     img.banner-toggle {
       width: 20px;
       position: absolute;
-      bottom: 20px;
-      right: 20px;
+      bottom: 14px;
+      right: 14px;
+    }
+
+    .disclaimer {
+      margin: {
+        left: 14px;
+        right: 14px;
+      }
     }
   }
 
