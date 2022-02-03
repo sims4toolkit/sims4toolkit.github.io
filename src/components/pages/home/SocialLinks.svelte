@@ -20,7 +20,7 @@
   <div class="promo-links-container" slot="right">
     <HollowButton
       text="Website"
-      color="#6172BD"
+      color="#8989fa"
       link="https://frankkmods.com"
     />
     <HollowButton

@@ -1,13 +1,38 @@
 <script lang="ts">
-  // TODO
+  // intentionally blank
 </script>
 
 <section id="footer" class="flex-center text-center">
+  <p>Created with <span class="heart">&#9829;</span> by Frankk.</p>
+  <p>
+    <a href="https://frankkmods.com" target="_blank" class="frankk-color"
+      >Website</a
+    >
+    |
+    <a
+      href="https://twitter.com/frankkulakmods"
+      target="_blank"
+      class="twitter-color">Twitter</a
+    >
+    |
+    <a
+      href="https://patreon.frankkmods.com"
+      target="_blank"
+      class="patreon-color">Patreon</a
+    >
+    |
+    <a href="https://ko-fi.com/frankkulak" target="_blank" class="kofi-color"
+      >Ko-fi</a
+    >
+    |
+    <a href="https://discord.gg/qNhD3Jh" target="_blank" class="discord-color"
+      >Discord</a
+    >
+  </p>
   <p class="disclaimer">
     The Sims™ and its plumbob icon are registered trademarks of Electronic Arts,
     Inc. (EA). Sims 4 Toolkit is not affiliated with or endorsed by EA.
   </p>
-  <p class="disclaimer">npm is a registered trademark of npm, Inc.</p>
   <p class="disclaimer">2022 © Frank Kulak</p>
 </section>
 
@@ -18,5 +43,9 @@
     width: 100%;
     padding: 1.5em 1em;
     flex-direction: column;
+
+    .heart {
+      color: rgb(218, 76, 135);
+    }
   }
 </style>
