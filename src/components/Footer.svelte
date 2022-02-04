@@ -57,7 +57,7 @@
 
     hr {
       width: 80px;
-      background-color: var(--color-text);
+      background-color: var(--color-light);
       opacity: 0.5;
       border: none;
       height: 1px;
