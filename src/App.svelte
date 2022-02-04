@@ -43,8 +43,8 @@
 <Navbar />
 <main>
   <Router {routes} />
+  <Footer />
 </main>
-<Footer />
 {#if showOverlay}
   <BlurOverlay>
     <div slot="content">
@@ -63,5 +63,10 @@
 {/if}
 
 <style lang="scss">
-  // intentionally blank
+  main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 </style>

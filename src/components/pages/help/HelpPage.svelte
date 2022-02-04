@@ -62,7 +62,5 @@
 </section>
 
 <style lang="scss">
-  section#help-page {
-    min-height: 100vh;
-  }
+  // intentionally blank
 </style>

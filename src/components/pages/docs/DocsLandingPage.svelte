@@ -38,8 +38,6 @@
 
 <style lang="scss">
   section#docs-landing-page {
-    min-height: 100vh;
-
     .docs-links-wrapper {
       display: flex;
       flex-wrap: wrap;
