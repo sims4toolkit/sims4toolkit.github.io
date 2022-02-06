@@ -55,8 +55,8 @@
         hosted) experiencing technical problems.
       </p>
       <p>
-        Try switching to the latest version, refreshing the page, and ensuring
-        that
+        Double-check the URL, switch to the latest version, refresh the page,
+        and ensure that
         <a href="https://www.githubstatus.com/" target="_blank">
           GitHub is not down</a
         >. If you are still seeing this error, please
