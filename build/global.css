@@ -31,13 +31,13 @@
   --filter-bg-blur: blur(12px) brightness(55%);
 }
 :root[data-theme=light] {
-  --color-bg: #ebedf0;
-  --color-bg-secondary: #e5e6ea;
+  --color-bg: #f1f3f5;
+  --color-bg-secondary: #ebedf0;
   --color-text: #282c34;
   --color-divider: #abafb1;
   --color-accent: #18ac87;
   --color-accent-secondary: #0095eb;
-  --color-card: #f1f3f5;
+  --color-card: #e5e6eb;
   --color-card-secondary: #e5e6ea;
   --color-navbar: rgba(231, 236, 238, 0.7);
   --color-footer: #2f343e;
