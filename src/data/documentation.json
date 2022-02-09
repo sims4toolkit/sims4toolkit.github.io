@@ -1,4 +1,11 @@
 {
+  "compression": {
+    "description": "Utilities for handling file compression.",
+    "repoLink": "https://github.com/sims4toolkit/compression",
+    "npmLink": "https://npmjs.com/package/@s4tk/compression",
+    "npmName": "@s4tk/compression",
+    "pinned": false
+  },
   "encoding": {
     "description": "Utility classes for encoding binary files.",
     "repoLink": "https://github.com/sims4toolkit/encoding",

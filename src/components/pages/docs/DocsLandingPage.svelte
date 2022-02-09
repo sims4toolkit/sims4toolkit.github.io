@@ -55,7 +55,7 @@
 
       &.pinned {
         order: -1;
-        flex: 100%;
+        // flex: 100%; // FIXME:
       }
     }
 
