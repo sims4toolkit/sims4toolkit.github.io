@@ -20,7 +20,15 @@ interface DocsIndexData {
     name: string;
     items: string[];
   }[];
-};
+}
+
+interface DocsVersionInfoData {
+  knownIssues: {
+    severity: 'negligible' | 'moderate' | 'high' | 'critical';
+    title: string;
+    description: string;
+  }[];
+}
 
 interface DocsContentData {
   imports?: string[];
