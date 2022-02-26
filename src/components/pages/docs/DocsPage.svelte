@@ -81,6 +81,14 @@
     }
   }
 
+  $: {
+    params.version;
+
+    controller.requestVersionInfo(params).then((versionInfo) => {
+      console.log(versionInfo);
+    });
+  }
+
   async function loadIndex() {
     if (params.package in documentation) {
       controller

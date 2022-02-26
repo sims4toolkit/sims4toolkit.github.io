@@ -7,6 +7,7 @@ import clone from "just-clone";
 export default class DocumentationController {
   private _params: Partial<DocsPageParams>;
   private _index?: DocsIndexData;
+  private _versionInfo?: DocsVersionInfoData;
   private _content?: DocsContentData;
 
   constructor() {
@@ -46,6 +47,32 @@ export default class DocumentationController {
       }
 
       resolve(this._index);
+    });
+  }
+
+  /**
+   * Returns the version info for the package and version that are given. This
+   * request will never be rejected, it will just resolve with null.
+   * 
+   * @param params Params to get version info for
+   */
+  requestVersionInfo(params: Partial<DocsPageParams>): Promise<DocsVersionInfoData> {
+    console.log("requesting...", params, this._versionInfo);
+
+    return new Promise(async (resolve) => {
+      if (!(this._versionInfo &&
+           (params.package === this._params.package) &&
+           (params.version === this._params.version))
+      ) {
+        try {
+          this._versionInfo = await DocumentationController._fetchVersionInfo(params.package, params.version);
+        } catch (msg) {
+          this._versionInfo = {} as DocsVersionInfoData;
+          return resolve(undefined);
+        }
+      }
+
+      resolve(this._versionInfo);
     });
   }
 
@@ -146,6 +173,24 @@ export default class DocumentationController {
         })
         .catch(() => {
           reject(`Index could not be found for package "${packageName}".`);
+        });
+    });
+  }
+
+  private static _fetchVersionInfo(packageName: string, version: string): Promise<DocsVersionInfoData> {
+    console.log("fetching...", packageName, version);
+    
+    return new Promise((resolve, reject) => {
+      const formattedVersion = version.replace(/\./g, "-");
+      const url = `https://raw.githubusercontent.com/sims4toolkit/${packageName}/version/${formattedVersion}/docs/versioninfo.json`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((jsonData) => {
+          resolve(jsonData);
+        })
+        .catch(() => {
+          reject(`Version info could not be found for package "${packageName}" version "${version}".`);
         });
     });
   }
