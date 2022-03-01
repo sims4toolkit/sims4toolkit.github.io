@@ -1,6 +1,6 @@
 {
   "name": "sims4toolkit.github.io",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "scripts": {
     "build": "npm run clean ; npm run sass:build ; rollup -c",
     "deploy": "sh ./scripts/deploy.sh",
