@@ -13,7 +13,8 @@
   <ContentArea>
     <SectionHeader title="Website troubles" />
     <p>
-      Incorrect/missing docs? Error 404? Formatting/accessibility issues? Typo?
+      Incorrect/missing docs? Broken link? Error 404? Formatting/accessibility
+      issues? Typo?
     </p>
     <p>
       Please let me know about any issues with the website, no matter how big or
@@ -45,13 +46,13 @@
       help. Reach out to me
       <a href={discordLink} target="_blank">on Discord</a>.
     </p>
-    <p>
+    <!-- <p>
       If you're completely stuck on how to begin using S4TK, please refer to
       <a href="https://patreon.frankkmods.com" target="_blank"
         >this post on Patreon</a
       >
       for a basic introduction to creating a Node.js project and running JS/TS code.
-    </p>
+    </p> -->
     <p>
       Please note that I will NOT be offering any further help with Node.js,
       npm, JavaScript, or TypeScript. There are so, so, so many resources
