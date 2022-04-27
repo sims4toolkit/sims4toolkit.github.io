@@ -38,7 +38,7 @@
         reverse={true}
         title="Easily Editable Binary Resources"
         description="Working with packages, string tables, and SimDatas is just as easy as plain-text XML, since they each come with their own fluent model. SimDatas can also be edited as XML, if that's what you're used to."
-        code={`const mergedStbl = StringTableResource.create();
+        code={`const mergedStbl = new StringTableResource();
 
 listOfStbls.forEach(stbl => {
   mergedStbl.addAll(stbl.entries);
