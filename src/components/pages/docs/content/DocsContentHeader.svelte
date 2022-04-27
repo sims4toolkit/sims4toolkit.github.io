@@ -45,7 +45,7 @@
         <p class="smaller-font mb-0 mt-0">
           extends
           {#each header.title.extends as parent, key (key)}
-            <DocTypeReferenceLink typeRef={parent} />
+            <DocTypeReferenceLink typeRef={parent} useCommas={true} />
           {/each}
         </p>
       {/if}
@@ -53,7 +53,7 @@
         <p class="smaller-font mt-0 mb-0">
           implements
           {#each header.title.implements as parent, key (key)}
-            <DocTypeReferenceLink typeRef={parent} />
+            <DocTypeReferenceLink typeRef={parent} useCommas={true} />
           {/each}
         </p>
       {/if}
