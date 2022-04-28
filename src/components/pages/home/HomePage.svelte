@@ -4,6 +4,7 @@
   import ThreeFeatures from "./ThreeFeatures.svelte";
   import SocialLinks from "./SocialLinks.svelte";
   import CodeDemo from "./CodeDemo.svelte";
+  import Credits from "./Credits.svelte";
 </script>
 
 <svelte:head>
@@ -66,6 +67,7 @@ pkg.add(key, mergedStbl);`}
   <ContentArea banded={false}>
     <slot>
       <SocialLinks />
+      <Credits />
     </slot>
   </ContentArea>
 </section>
