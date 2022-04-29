@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import SpecialThanksBlurb from "./SpecialThanksBlurb.svelte";
+  // intentionally blank
 </script>
 
 <div class="credits-wrapper">
@@ -7,9 +7,8 @@
   <div class="special-thanks-blurbs">
     <p>
       <strong>Andrew and Orangemittens</strong> for creating
-      <a href="https://sims4studio.com/" target="_blank">Sims 4 Studio</a>. It
-      was invaluable during S4TK's development, and its XML syntax for SimData
-      inspired S4TK's SimData model.
+      <a href="https://sims4studio.com/" target="_blank">Sims 4 Studio</a>,
+      which was invaluable during S4TK's development.
     </p>
     <p>
       The late <strong>Scumbumbo</strong> for his
@@ -19,15 +18,14 @@
       <a
         href="https://modthesims.info/d/563256/xml-extractor-for-the-sims-4.html"
         target="_blank">XML Extractor</a
-      >. His work has enabled S4TK to extract tuning from the game.
+      > program.
     </p>
     <p>
-      The contributors of
+      The creators and contributors of
       <a
         href="https://github.com/s4ptacle/Sims4Tools/tree/develop"
         target="_blank">Sims 4 Package Interface</a
-      >, a .NET library with a similar goal to S4TK. Without S4PI, I would have
-      never figured out the DST image format.
+      >, a .NET codebase with similar goals to S4TK.
     </p>
   </div>
   <p class="credits-summary">
