@@ -21,7 +21,6 @@
   --color-accent: #70cfb6;
   --color-accent-secondary: #49c6e6;
   --color-card: #3a3f49;
-  --color-card-secondary: #2f343e;
   --color-navbar: rgba(0, 0, 0, 0.7);
   --color-footer: #1a1c20;
   --color-scrollbar: rgb(135, 137, 141);
@@ -31,16 +30,15 @@
   --filter-bg-blur: blur(12px) brightness(55%);
 }
 :root[data-theme=light] {
-  --color-bg: #f1f3f5;
-  --color-bg-secondary: #ebedf0;
+  --color-bg: rgb(248, 250, 252);
+  --color-bg-secondary: rgb(242, 244, 246);
   --color-text: #282c34;
   --color-divider: #abafb1;
   --color-accent: #18ac87;
   --color-accent-secondary: #0095eb;
-  --color-card: #e5e6eb;
-  --color-card-secondary: #e5e6ea;
+  --color-card: white;
   --color-navbar: rgba(231, 236, 238, 0.7);
-  --color-footer: #2f343e;
+  --color-footer: rgb(228, 230, 234);
   --color-scrollbar: rgb(144, 147, 150);
   --color-scrollbar-hover: rgb(95, 99, 100);
   --color-blur-fallback: rgba(255, 255, 255, 0.9);
