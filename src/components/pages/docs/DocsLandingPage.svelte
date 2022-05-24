@@ -39,9 +39,14 @@
 <style lang="scss">
   section#docs-landing-page {
     .docs-links-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+      a {
+        min-width: 300px;
+        max-width: 100%;
+      }
     }
 
     span.pkg-name {
@@ -51,11 +56,9 @@
     a {
       text-decoration: none;
       color: var(--color-text);
-      flex: 45%;
 
       &.pinned {
         order: -1;
-        // flex: 100%; // FIXME:
       }
     }
 
