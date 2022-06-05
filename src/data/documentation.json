@@ -13,6 +13,13 @@
     "npmName": "@s4tk/encoding",
     "pinned": false
   },
+  "extraction": {
+    "description": "Functions for extracting files from the game.",
+    "repoLink": "https://github.com/sims4toolkit/extraction",
+    "npmLink": "https://npmjs.com/package/@s4tk/extraction",
+    "npmName": "@s4tk/extraction",
+    "pinned": false
+  },
   "hashing": {
     "description": "Utility functions for FNV hashing.",
     "repoLink": "https://github.com/sims4toolkit/hashing",
