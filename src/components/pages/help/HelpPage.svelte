@@ -39,6 +39,39 @@
     </p>
   </ContentArea>
   <ContentArea>
+    <SectionHeader title="Why Node.js?" />
+    <p>
+      Yes, JavaScript is an odd choice for a library such as this one. However,
+      I was chosen for the following reasons:
+    </p>
+    <ul>
+      <li>
+        The initial intention was either to create an extension for VS Code, or
+        a standalone desktop app using Electron. For either of these cases, a
+        Node.js library would be required.
+      </li>
+      <li>
+        I and some of my peers, including <a
+          href="https://lot51.cc/"
+          target="_blank">Lot51</a
+        >, create web-based tools for Sims 4 modding, such as my
+        <a href="https://frankkmods.com/#/ts4-tools/stbl-editor" target="_blank"
+          >STBL editor</a
+        >
+        and his
+        <a href="https://lot51.cc/tdesc" target="_blank">TDESC browser</a>. A
+        JavaScript-based library enables tools such as these to be more powerful
+        with less overhead.
+      </li>
+      <li>
+        JavaScript is a scripting language, and simple tasks can be done with a
+        single JS file and called from the command line. This is great for
+        environment-agnostic build tools, as well as one-off tasks that you
+        don't want to create an entire application to run.
+      </li>
+    </ul>
+  </ContentArea>
+  <ContentArea banded={true}>
     <SectionHeader title="Learning the library" />
     <p>
       This website should cover everything you need to get started using the
@@ -63,5 +96,7 @@
 </section>
 
 <style lang="scss">
-  // intentionally blank
+  ul li:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
 </style>

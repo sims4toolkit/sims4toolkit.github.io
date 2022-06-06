@@ -10,8 +10,8 @@
       <div class="home-banner-left text-center" slot="left">
         <h2 class="text-center text-shadow">Node.js Library for The Sims 4</h2>
         <p>
-          Read and write package files, tuning, SimData, and string tables with
-          a fluent API.
+          Read and write package files and the resources they contain with a
+          fluent API.
         </p>
       </div>
       <div slot="right">

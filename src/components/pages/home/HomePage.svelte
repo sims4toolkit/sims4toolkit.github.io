@@ -54,7 +54,7 @@ pkg.add(key, mergedStbl);`}
       <CodeDemo
         title="Simple, Efficient, and Versatile"
         description="Extracting files? Just read the ones you need, and skip over everything else. Merging packages? Cache their buffers to reduce runtime by more than 60%. Need something non-blocking? Just use one of the async methods."
-        code={`Package.extractResourcesAsync(buffer, {
+        code={`Package.streamResourcesAsync(filename, {
   resourceFilter(type, group, instance) {
     return type === BinaryResourceType.SimData;
   }

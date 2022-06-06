@@ -6,7 +6,7 @@
   <h2>With special thanks to...</h2>
   <div class="special-thanks-blurbs">
     <p>
-      <strong>Andrew and Orangemittens</strong> for creating
+      <strong>Andrew</strong> and <strong>Orangemittens</strong> for creating
       <a href="https://sims4studio.com/" target="_blank">Sims 4 Studio</a>,
       which was invaluable during S4TK's development.
     </p>
@@ -26,6 +26,10 @@
         href="https://github.com/s4ptacle/Sims4Tools/tree/develop"
         target="_blank">Sims 4 Package Interface</a
       >, a .NET codebase with similar goals to S4TK.
+    </p>
+    <p>
+      <strong>Lot51</strong> and <strong>Simsonian Library</strong>, for giving
+      me ideas, helping me test, and making their own tools with S4TK.
     </p>
   </div>
   <p class="credits-summary">
