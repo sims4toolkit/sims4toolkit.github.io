@@ -42,7 +42,7 @@
     <SectionHeader title="Why Node.js?" />
     <p>
       Yes, JavaScript is an odd choice for a library such as this one. However,
-      I was chosen for the following reasons:
+      it was chosen for the following reasons:
     </p>
     <ul>
       <li>

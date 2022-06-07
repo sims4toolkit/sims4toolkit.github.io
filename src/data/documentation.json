@@ -21,7 +21,7 @@
     "pinned": false
   },
   "hashing": {
-    "description": "Utility functions for FNV hashing.",
+    "description": "Utility functions for FNV hashing and formatting.",
     "repoLink": "https://github.com/sims4toolkit/hashing",
     "npmLink": "https://npmjs.com/package/@s4tk/hashing",
     "npmName": "@s4tk/hashing",
