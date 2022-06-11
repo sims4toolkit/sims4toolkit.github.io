@@ -28,6 +28,8 @@
   --color-blur-fallback: rgba(0, 0, 0, 0.9);
   --filter-svg: var(--filter-light);
   --filter-bg-blur: blur(12px) brightness(55%);
+  --filter-accent: invert(85%) sepia(11%) saturate(1439%) hue-rotate(109deg)
+    brightness(88%) contrast(87%);
 }
 :root[data-theme=light] {
   --color-bg: rgb(248, 250, 252);
@@ -44,6 +46,8 @@
   --color-blur-fallback: rgba(255, 255, 255, 0.9);
   --filter-svg: var(--filter-dark);
   --filter-bg-blur: blur(12px);
+  --filter-accent: invert(49%) sepia(89%) saturate(391%) hue-rotate(115deg)
+    brightness(93%) contrast(90%);
 }
 
 html {
