@@ -16,6 +16,12 @@ interface DocsPageParams {
 
 interface DocsIndexData {
   versions: string[];
+
+  notice: {
+    type: "experimental" | "warning" | "error";
+    text: string;
+  };
+
   groups: {
     name: string;
     items: string[];
@@ -115,11 +121,14 @@ interface DocsSectionGeneral {
 
 interface DocsTypeReference {
   name: string;
+
   path?: {
     pkg: string;
     group: string;
     item: string;
-  }
+  };
+
+  externalLink?: string;
 }
 
 interface DocsTypeGeneric {

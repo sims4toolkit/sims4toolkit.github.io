@@ -138,19 +138,35 @@
       </ContentArea>
     {:else if docsReady}
       <ContentArea>
-        <SplitView
-          centerV={false}
-          rightFill={true}
-          reverseOnCollapse={true}
-          hideRightOverflowX={true}
-        >
-          <div slot="left">
-            <DocsIndex {indexData} bind:params />
-          </div>
-          <div slot="right">
-            <DocsContent bind:params />
-          </div>
-        </SplitView>
+        <div>
+          {#if docsReady && indexData.notice != undefined}
+            <div id="docs-page-notice" class="w-100">
+              <div class="flex-center-v">
+                <img
+                  src="./assets/flask-outline.svg"
+                  alt="Flask"
+                  class="is-svg"
+                />
+                <h3 class="my-0 accent-color">Experimental</h3>
+              </div>
+              <p class="mt-0">{indexData.notice.text}</p>
+              <hr />
+            </div>
+          {/if}
+          <SplitView
+            centerV={false}
+            rightFill={true}
+            reverseOnCollapse={true}
+            hideRightOverflowX={true}
+          >
+            <div slot="left">
+              <DocsIndex {indexData} bind:params />
+            </div>
+            <div slot="right">
+              <DocsContent bind:params />
+            </div>
+          </SplitView>
+        </div>
       </ContentArea>
     {:else}
       <ContentArea>
@@ -184,6 +200,21 @@
   section#docs-page {
     #docs-page-body {
       min-height: 100vh;
+    }
+
+    #docs-page-notice {
+      margin-bottom: 3em;
+
+      img {
+        height: 1.8em;
+        margin-right: 1em;
+        filter: var(--filter-accent);
+      }
+
+      hr {
+        margin-top: 3em;
+        opacity: 0.5;
+      }
     }
 
     .loading-text {

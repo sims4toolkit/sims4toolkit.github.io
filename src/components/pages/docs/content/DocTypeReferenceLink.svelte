@@ -8,7 +8,9 @@
 </script>
 
 <span class:use-commas={useCommas}>
-  {#if typeRef.path}
+  {#if typeRef.externalLink}
+    <a href={typeRef.externalLink} target="_blank">{typeRef.name}</a>
+  {:else if typeRef.path}
     <a href={context.getHrefForPath(typeRef.path)}>{typeRef.name}</a>
   {:else}
     {typeRef.name}

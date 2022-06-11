@@ -27,6 +27,13 @@
     "npmName": "@s4tk/hashing",
     "pinned": false
   },
+  "images": {
+    "description": "Models and algorithms for processing image resources.",
+    "repoLink": "https://github.com/sims4toolkit/images",
+    "npmLink": "https://npmjs.com/package/@s4tk/images",
+    "npmName": "@s4tk/images",
+    "pinned": false
+  },
   "models": {
     "description": "Models for packages and their resources.",
     "repoLink": "https://github.com/sims4toolkit/models",
