@@ -21,13 +21,15 @@
     </span>
   </h4>
   {#if propertyData.overrides}
-    <p class="smaller-font">
+    <p class="smaller-font" class:mb-0={!propertyData.description}>
       Overrides property in <DocTypeReferenceLink
         typeRef={propertyData.overrides}
       />
     </p>
   {/if}
-  <p class="mb-0 newlines">{propertyData.description}</p>
+  {#if Boolean(propertyData.description)}
+    <p class="mb-0 newlines">{propertyData.description}</p>
+  {/if}
 </div>
 
 <style lang="scss">
