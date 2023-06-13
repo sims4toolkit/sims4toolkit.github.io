@@ -7,21 +7,7 @@
   import DesktopPage from "./components/pages/desktop/DesktopPage.svelte";
   import DocsLandingPage from "./components/pages/docs/DocsLandingPage.svelte";
   import DocsPage from "./components/pages/docs/DocsPage.svelte";
-  import BlurOverlay from "./components/shared/BlurOverlay.svelte";
-  import { onMount } from "svelte";
   import HelpPage from "./components/pages/help/HelpPage.svelte";
-
-  let showOverlay = false;
-
-  onMount(() => {
-    const hasBeenOnboarded = localStorage.getItem("hasBeenOnboarded");
-    if (!hasBeenOnboarded) {
-      setTimeout(() => {
-        showOverlay = true;
-        localStorage.setItem("hasBeenOnboarded", "true");
-      }, 200);
-    }
-  });
 
   // https://github.com/ItalyPaleAle/svelte-spa-router
   const routes = {
@@ -45,22 +31,6 @@
   <Router {routes} />
   <Footer />
 </main>
-{#if showOverlay}
-  <BlurOverlay>
-    <div slot="content">
-      <h2>Welcome, stranger!</h2>
-      <p>
-        It looks like you're new here, so please note that Sims 4 Toolkit is in
-        early development. There may be some bugs, some features may be missing,
-        and the documentation may change frequently. Keep in mind that breaking
-        changes may occur until version 1.0.0 is released.
-      </p>
-    </div>
-    <div slot="actions">
-      <span class="button" on:click={() => (showOverlay = false)}>Got it</span>
-    </div>
-  </BlurOverlay>
-{/if}
 
 <style lang="scss">
   main {
